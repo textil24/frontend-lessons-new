@@ -67,6 +67,7 @@ const Monaco: FC<IMonaco> = ({ code }) => {
                 alignItems={"center"}
                 borderTop={"1px solid #2d3748"}
                 bgColor={"#1e1e1e"}
+                mt={"-1px"}
                 padding={"8px"}
                 borderBottomRadius={"5px"}
             >
