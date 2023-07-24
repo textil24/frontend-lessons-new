@@ -1,3 +1,4 @@
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { Box, Image, Heading, Text, Button, Stack, useColorModeValue } from "@chakra-ui/react"
 import { Icon } from '@iconify/react';
 
@@ -7,7 +8,7 @@ const Course = () => {
 
     return (
         <Box>
-            <Stack borderRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"20px"} spacing={3} textAlign={"center"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
+            <Stack borderRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"25px"} spacing={3} textAlign={"left"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
                 <Image
                     src="https://talks.freelancerepublik.com/wp-content/uploads/2021/12/banner_js.png"
                     alt='image'
@@ -17,12 +18,12 @@ const Course = () => {
                 <Heading as='h2' size='xl'>
                     JavaScript Fundamental
                 </Heading>
-                <Text fontSize='md'>
+                <Text fontSize='lg'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae necessitatibus dignissimos illo ipsam minima explicabo repellat vitae, sequi dolorem aliquid enim aut at fugit voluptate. Ex sequi quibusdam officia odit!
                 </Text>
-                <Box>
-                    <Button colorScheme='orange' size='md'>
-                        Начать
+                <Box mt={5} textAlign={"center"}>
+                    <Button rightIcon={<ArrowForwardIcon />} colorScheme='whatsapp' size='md'>
+                        Приступить
                     </Button>
                 </Box>
             </Stack>

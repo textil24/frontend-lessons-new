@@ -9,7 +9,7 @@ const Header: FC = () => {
     const bgColor = useColorModeValue('white', '#1A202C')
 
     return (
-        <Box mb={6} position={"fixed"} top={"0"} right={"0"} width={"100%"} zIndex={999} px={"16px"} py={"16px"} bgColor={bgColor} boxShadow='md'>
+        <Box mb={6} position={"fixed"} top={"0"} right={"0"} width={"100%"} zIndex={999} px={"16px"} py={"16px"} bgColor={"white"} boxShadow='md'>
             <Flex display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                 <Box>
                     <Flex>
