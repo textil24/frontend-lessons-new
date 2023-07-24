@@ -1,15 +1,16 @@
 import { HamburgerIcon } from "@chakra-ui/icons"
-import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, Stack, useDisclosure } from "@chakra-ui/react"
+import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, Stack, useColorModeValue, useDisclosure } from "@chakra-ui/react"
 import { FC } from "react"
 import ButtonColorMode from "./ButtonColorMode"
 import { Link } from "react-router-dom";
 
 const Header: FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const bgColor = useColorModeValue('white', '#1A202C')
 
     return (
-        <Box mb={6}>
-            <Flex justifyContent="space-between">
+        <Box mb={6} position={"fixed"} top={"0"} right={"0"} width={"100%"} zIndex={999} px={"16px"} py={"16px"} bgColor={bgColor} boxShadow='md'>
+            <Flex display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
                 <Box>
                     <Flex>
                         <Button onClick={onOpen}>
@@ -20,7 +21,7 @@ const Header: FC = () => {
                         <DrawerOverlay />
                         <DrawerContent>
                             <DrawerHeader borderBottomWidth="1px">
-                                Best Courses
+                                JavaScript Fundamental
                             </DrawerHeader>
                             <DrawerBody>
                                 <Stack spacing={2}>

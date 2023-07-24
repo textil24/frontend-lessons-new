@@ -1,5 +1,5 @@
 import { Box, SimpleGrid } from "@chakra-ui/react"
-import CardItem from "../components/CardItem"
+import Card from "../components/Card"
 
 const cardsItems = [
     {
@@ -14,7 +14,7 @@ const Home = () => {
         <Box>
             <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
                 {cardsItems.map(({ id, image, title }) =>
-                    <CardItem key={id} image={image} title={title} />
+                    <Card key={id} image={image} title={title} />
                 )}
             </SimpleGrid>
         </Box>
