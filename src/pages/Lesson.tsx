@@ -5,8 +5,13 @@ import Monaco from "../components/Monaco"
 import AnswerSelector from "../components/AnswerSelector"
 import Breadcrumb from "../components/Breadcrumb"
 import Header from "../components/Header"
+import { useEffect } from "react"
 
 const Lesson = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <Box>

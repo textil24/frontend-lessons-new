@@ -1,6 +1,7 @@
 import { Box, SimpleGrid } from "@chakra-ui/react"
 import Card from "../components/Card"
 import Header from "../components/Header"
+import { useEffect } from "react"
 
 const cardsItems = [
     {
@@ -10,6 +11,11 @@ const cardsItems = [
 ]
 
 const Home = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <Box>
             <Header type="home" />

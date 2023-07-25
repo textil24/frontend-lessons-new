@@ -4,10 +4,15 @@ import { Icon } from '@iconify/react';
 import Header from "../components/Header";
 import Breadcrumb from "../components/Breadcrumb";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Course = () => {
 
     const bgColor = useColorModeValue('#F4F6F8', '#2D3748')
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <Box>
