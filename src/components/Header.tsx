@@ -38,7 +38,11 @@ const Header: FC<IHeader> = ({ type }) => {
                             <DrawerOverlay />
                             <DrawerContent>
                                 <DrawerHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} borderBottomWidth="1px">
-                                    JavaScript Fundamental
+                                    <Link to={"/course"}>
+                                        <Button leftIcon={<ArrowBackIcon />} onClick={() => onClose()} mr={2} >
+                                            JavaScript Fundamental
+                                        </Button>
+                                    </Link>
                                     <Button onClick={() => onClose()} >
                                         <CloseIcon />
                                     </Button>
