@@ -7,7 +7,7 @@ import Course from "./pages/Course"
 const App = () => {
   return (
     <Container my={4} maxW='1200'>
-      <Box marginTop={"90px"} paddingBottom={"50px"} bgColor={"red"}>
+      <Box marginTop={"90px"} paddingBottom={"50px"}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/course" element={<Course />} />
