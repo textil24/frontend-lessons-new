@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from "@chakra-ui/icons"
-import { Breadcrumb as BreadcrumbItem, BreadcrumbItem as BreadcrumbWrapper, BreadcrumbLink } from "@chakra-ui/react"
+import { Breadcrumb as BreadcrumbItem, BreadcrumbItem as BreadcrumbWrapper } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 

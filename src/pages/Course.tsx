@@ -1,5 +1,5 @@
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-import { Box, Image, Heading, Text, Button, Stack, useColorModeValue } from "@chakra-ui/react"
+import { Box, Heading, Text, Button, Stack, useColorModeValue } from "@chakra-ui/react"
 import { Icon } from '@iconify/react';
 import Header from "../components/Header";
 import Breadcrumb from "../components/Breadcrumb";

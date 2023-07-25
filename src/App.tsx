@@ -2,8 +2,6 @@ import { Box, Container } from "@chakra-ui/react"
 import { Route, Routes } from "react-router-dom"
 import Home from "./pages/Home"
 import Lesson from "./pages/Lesson"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
 import Course from "./pages/Course"
 
 const App = () => {
@@ -16,7 +14,7 @@ const App = () => {
           <Route path="/lesson" element={<Lesson />} />
         </Routes>
       </Box>
-      <Footer />
+      {/* <Footer /> */}
     </Container>
   )
 }
