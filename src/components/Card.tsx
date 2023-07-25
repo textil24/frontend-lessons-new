@@ -3,11 +3,10 @@ import { FC } from "react"
 import { Link } from "react-router-dom"
 
 interface ICard {
-    image: string
     title: string
 }
 
-const Card: FC<ICard> = ({ image, title }) => {
+const Card: FC<ICard> = ({ title }) => {
     return (
         <CardItem>
             <CardBody>
