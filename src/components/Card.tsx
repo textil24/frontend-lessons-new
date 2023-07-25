@@ -1,4 +1,4 @@
-import { Button, Card as CardItem, CardBody, Heading, Stack, Image, Flex } from "@chakra-ui/react"
+import { Button, Card as CardItem, CardBody, Heading, Stack, Image, Text, Flex } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 
@@ -12,16 +12,19 @@ const Card: FC<ICard> = ({ image, title }) => {
         <CardItem>
             <CardBody>
                 <Stack spacing={4}>
-                    <Image
+                    {/* <Image
                         src={image}
                         alt='image'
                         borderRadius='lg'
-                    />
+                    /> */}
+                    <Text fontSize={"lg"}>
+                        Курс
+                    </Text>
                     <Heading size='md'>
                         {title}
                     </Heading>
                     <Flex>
-                        <Link to={"/lesson"}>
+                        <Link to={"/course"}>
                             <Button variant='solid' colorScheme='gray'>
                                 Войти
                             </Button>

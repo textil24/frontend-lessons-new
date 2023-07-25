@@ -4,12 +4,14 @@ import Prism from "../components/Prism"
 import Monaco from "../components/Monaco"
 import AnswerSelector from "../components/AnswerSelector"
 import Breadcrumb from "../components/Breadcrumb"
+import Header from "../components/Header"
 
 const Lesson = () => {
 
     return (
         <Box>
-            <Breadcrumb />
+            <Header type="lesson"/>
+            <Breadcrumb/>
             <Heading mt={2} as='h2' size='2xl'>
                 Введение
             </Heading>
