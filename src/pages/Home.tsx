@@ -1,7 +1,10 @@
-import { Box, SimpleGrid } from "@chakra-ui/react"
+import { Box, SimpleGrid, Skeleton } from "@chakra-ui/react"
 import { useEffect } from "react"
 import { Header } from "../components/@Common"
 import { Card } from "../components/Home"
+import { GET_COURSES } from "../apollo/home"
+import { useQuery } from "@apollo/client"
+import Loading from "../components/@Common/State/Loading"
 
 const cards = [
     {
@@ -20,11 +23,12 @@ const Home = () => {
         <Box>
             <Header type="home" />
             <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-                {cards.map(({ id, title }) =>
+                <Loading type="home"/>
+                {/* {cards.map(({ id, title }) =>
                     <Card key={id} title={title} />
-                )}
+                )} */}
             </SimpleGrid>
-        </Box>
+        </Box >
     )
 }
 

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Breadcrumb, Header } from "../components/@Common";
 import { Info } from "../components/Course";
+import Loading from "../components/@Common/State/Loading";
 
 interface IBoxItem {
     id: string,
@@ -26,7 +27,7 @@ const infoLink: IInfo = {
     data: {
         id: "1",
         type: "link",
-        title: "Заголовок Link",
+        title: "Список уроков",
         boxItems: [
             {
                 id: "2",
@@ -56,7 +57,7 @@ const infoIcon: IInfo = {
     data: {
         id: "6",
         type: "icon",
-        title: "Заголовок Icon",
+        title: "Это учебное пособие",
         boxItems: [
             {
                 id: "7",
@@ -96,7 +97,8 @@ const Course = () => {
             <Header type="course" />
             <Stack borderBottomRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"25px"} spacing={3} textAlign={"left"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
                 <Breadcrumb type="course" />
-                <Heading as='h2' size='xl'>
+                <Loading type="course-about" />
+                {/* <Heading as='h2' size='xl'>
                     JavaScript Fundamental
                 </Heading>
                 <Text fontSize='lg'>
@@ -108,11 +110,12 @@ const Course = () => {
                             Приступить
                         </Button>
                     </Box>
-                </Link>
+                </Link> */}
             </Stack>
             <Stack mt={4} spacing={4}>
-                <Info data={infoLink} />
-                <Info data={infoIcon} />
+                <Loading type="course-info" />
+                {/* <Info data={infoLink} />
+                <Info data={infoIcon} /> */}
             </Stack>
         </Box>
     )
