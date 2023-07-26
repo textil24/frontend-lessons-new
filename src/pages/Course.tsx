@@ -3,7 +3,7 @@ import { Box, Heading, Text, Button, Stack, useColorModeValue } from "@chakra-ui
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { Breadcrumb, Header, Loading } from "../components/@Common";
+import { Breadcrumb, Header, Loading, Error } from "../components/@Common";
 import { Info } from "../components/Course";
 
 interface IBoxItem {
@@ -94,10 +94,11 @@ const Course = () => {
     return (
         <Box>
             <Header type="course" />
-            <Stack borderBottomRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"25px"} spacing={3} textAlign={"left"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
+            <Error />
+            {/* <Stack borderBottomRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"25px"} spacing={3} textAlign={"left"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
                 <Breadcrumb type="course" />
                 <Loading type="course-about" />
-                {/* <Heading as='h2' size='xl'>
+                <Heading as='h2' size='xl'>
                     JavaScript Fundamental
                 </Heading>
                 <Text fontSize='lg'>
@@ -109,13 +110,13 @@ const Course = () => {
                             Приступить
                         </Button>
                     </Box>
-                </Link> */}
+                </Link>
             </Stack>
             <Stack mt={4} spacing={4}>
                 <Loading type="course-info" />
-                {/* <Info data={infoLink} />
-                <Info data={infoIcon} /> */}
-            </Stack>
+                <Info data={infoLink} />
+                <Info data={infoIcon} />
+            </Stack> */}
         </Box>
     )
 }

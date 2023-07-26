@@ -1,6 +1,6 @@
 import { Box, Heading, Stack, Text, Image } from "@chakra-ui/react"
 import { useEffect } from "react"
-import { Breadcrumb, Header, Loading } from "../components/@Common"
+import { Breadcrumb, Header, Loading, Error } from "../components/@Common"
 import { ButtonNavigation, Monaco, Prism } from "../components/Lesson"
 
 enum LessonElementType {
@@ -48,9 +48,10 @@ const Lesson = () => {
     return (
         <Box>
             <Header type="lesson" />
-            <Breadcrumb />
+            <Error />
+            {/* <Breadcrumb />
             <Loading type="lesson" />
-            {/* <Heading my={2} as='h2' size='2xl'>
+            <Heading my={2} as='h2' size='2xl'>
                 Введение
             </Heading>
             <Stack spacing={2}>
@@ -84,8 +85,8 @@ const Lesson = () => {
                             return null
                     }
                 })}
-            </Stack> */}
-            {/* <ButtonNavigation /> */}
+            </Stack>
+            <ButtonNavigation /> */}
         </Box>
     )
 }
