@@ -3,9 +3,8 @@ import { Box, Heading, Text, Button, Stack, useColorModeValue } from "@chakra-ui
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { Breadcrumb, Header } from "../components/@Common";
+import { Breadcrumb, Header, Loading } from "../components/@Common";
 import { Info } from "../components/Course";
-import Loading from "../components/@Common/State/Loading";
 
 interface IBoxItem {
     id: string,

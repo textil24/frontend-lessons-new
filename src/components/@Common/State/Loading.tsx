@@ -1,12 +1,12 @@
-import { Card as CardItem, CardBody, Heading, Stack, Text, Badge, Skeleton, useColorModeValue, Box, Button } from "@chakra-ui/react"
+import { Card as CardItem, CardBody, Heading, Stack, Text, Badge, Skeleton, useColorModeValue, Box, Button, Flex } from "@chakra-ui/react"
 import { FC } from "react"
-import { ArrowForwardIcon } from "@chakra-ui/icons"
+import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 
 const cards = [1, 2, 3]
 const infoElements = [1, 2, 3, 4]
 
 interface ILoading {
-    type: "home" | "course-about" | "course-info"
+    type: "home" | "course-about" | "course-info" | "lesson"
 }
 
 const Loading: FC<ILoading> = ({ type }) => {
@@ -14,8 +14,8 @@ const Loading: FC<ILoading> = ({ type }) => {
     switch (type) {
         case "home":
             return (
-                cards.map(_ =>
-                    <CardItem boxShadow={"rgba(36, 36, 36, 0.07) 0px 1px 12px 2px"}>
+                cards.map((_, index) =>
+                    <CardItem key={index} boxShadow={"rgba(36, 36, 36, 0.07) 0px 1px 12px 2px"}>
                         <CardBody>
                             <Stack spacing={4}>
                                 <Skeleton>
@@ -68,8 +68,8 @@ const Loading: FC<ILoading> = ({ type }) => {
                             Список уроков
                         </Heading>
                         <Stack border={"1px solid #DEE2E7"} padding={"24px"} borderRadius={"15px"}>
-                            {infoElements.map(_ =>
-                                <Skeleton height="24px">
+                            {infoElements.map((_, index) =>
+                                <Skeleton key={index} height="24px">
                                     <Text fontSize='md'>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                     </Text>
@@ -82,8 +82,8 @@ const Loading: FC<ILoading> = ({ type }) => {
                             Это учебное пособие
                         </Heading>
                         <Stack border={"1px solid #DEE2E7"} padding={"24px"} borderRadius={"15px"}>
-                            {infoElements.map(_ =>
-                                <Skeleton height="24px">
+                            {infoElements.map((_, index) =>
+                                <Skeleton key={index} height="24px">
                                     <Text>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                     </Text>
@@ -91,6 +91,56 @@ const Loading: FC<ILoading> = ({ type }) => {
                             )}
                         </Stack>
                     </Box>
+                </>
+            )
+        case "lesson":
+            return (
+                <>
+                    <Skeleton>
+                        <Heading my={2} as='h2' size='2xl'>
+                            Lorem ipsum
+                        </Heading>
+                    </Skeleton>
+                    <Stack spacing={2}>
+                        <Skeleton>
+                            <Text fontSize='md'>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim, reprehenderit harum repellendus dicta sequi corrupti et! Quas eaque voluptatibus veritatis libero autem corporis. Enim libero quaerat saepe vero qui!
+                            </Text>
+                        </Skeleton>
+                        <Skeleton height={"360px"}>
+                            <Text fontSize='md'>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim, reprehenderit harum repellendus dicta sequi corrupti et! Quas eaque voluptatibus veritatis libero autem corporis. Enim libero quaerat saepe vero qui!
+                            </Text>
+                        </Skeleton>
+                        <Skeleton>
+                            <Heading mb={2} as='h2' size='2xl'>
+                                Lorem ipsum
+                            </Heading>
+                        </Skeleton>
+                        <Skeleton height={"360px"}>
+                            <Text fontSize='md'>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem enim, reprehenderit harum repellendus dicta sequi corrupti et! Quas eaque voluptatibus veritatis libero autem corporis. Enim libero quaerat saepe vero qui!
+                            </Text>
+                        </Skeleton>
+                    </Stack>
+                    <Flex
+                        mt={6}
+                        justifyContent={"space-between"}
+                        alignItems={"center"}
+                    >
+                        <Skeleton>
+                            <Button leftIcon={<ArrowBackIcon />} colorScheme='gray'>
+                                Предыдущий
+                            </Button>
+                        </Skeleton>
+
+                        <Skeleton>
+                            <Button rightIcon={<ArrowForwardIcon />} colorScheme='gray'>
+                                Следующий
+                            </Button>
+                        </Skeleton>
+
+                    </Flex>
                 </>
             )
         default:

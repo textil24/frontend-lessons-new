@@ -1,10 +1,9 @@
 import { Box, SimpleGrid, Skeleton } from "@chakra-ui/react"
 import { useEffect } from "react"
-import { Header } from "../components/@Common"
+import { Header, Loading } from "../components/@Common"
 import { Card } from "../components/Home"
 import { GET_COURSES } from "../apollo/home"
 import { useQuery } from "@apollo/client"
-import Loading from "../components/@Common/State/Loading"
 
 const cards = [
     {
