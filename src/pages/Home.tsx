@@ -23,10 +23,10 @@ const Home = () => {
             <Header type="home" />
             <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
                 {/* <Loading type="home"/> */}
-                <Error />
-                {/* {cards.map(({ id, title }) =>
+                {/* <Error /> */}
+                {cards.map(({ id, title }) =>
                     <Card key={id} title={title} />
-                )} */}
+                )}
             </SimpleGrid>
         </Box >
     )
