@@ -48,9 +48,9 @@ const Lesson = () => {
     return (
         <Box>
             <Header type="lesson" />
-            <Error />
-            {/* <Breadcrumb />
-            <Loading type="lesson" />
+            {/* <Error /> */}
+            <Breadcrumb />
+            {/* <Loading type="lesson" /> */}
             <Heading my={2} as='h2' size='2xl'>
                 Введение
             </Heading>
@@ -86,7 +86,7 @@ const Lesson = () => {
                     }
                 })}
             </Stack>
-            <ButtonNavigation /> */}
+            <ButtonNavigation />
         </Box>
     )
 }
