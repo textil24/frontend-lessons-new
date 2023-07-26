@@ -1,10 +1,81 @@
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { Box, Heading, Text, Button, Stack, useColorModeValue } from "@chakra-ui/react"
 import { Icon } from '@iconify/react';
-import Header from "../components/Header";
-import Breadcrumb from "../components/Breadcrumb";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { Breadcrumb, Header } from "../components/@Common";
+import { Info } from "../components/Course";
+
+interface IBoxItem {
+    id: string,
+    icon?: React.ReactNode
+    link?: string
+    text: string
+}
+
+export interface IInfo {
+    id: string
+    title: string
+    type: "link" | "icon",
+    boxItems: IBoxItem[]
+}
+
+const infoLink: IInfo = {
+    id: "1",
+    type: "link",
+    title: "Заголовок Link",
+    boxItems: [
+        {
+            id: "2",
+            link: "/lesson",
+            text: "Введение"
+        },
+        {
+            id: "3",
+            link: "/lesson",
+            text: "Переменные"
+        },
+        {
+            id: "4",
+            link: "/lesson",
+            text: "Типы данных"
+        },
+        {
+            id: "5",
+            link: "/lesson",
+            text: "Циклы for и while"
+        }
+    ]
+}
+
+const infoIcon: IInfo = {
+    id: "6",
+    type: "icon",
+    title: "Заголовок Icon",
+    boxItems: [
+        {
+            id: "7",
+            icon: <Icon icon="icon-park-outline:video" style={{ marginRight: "6px" }} />,
+            text: "Видео (всего 9 минут)"
+        },
+        {
+            id: "8",
+            icon: <Icon icon="ph:question" style={{ marginRight: "6px" }} />,
+            text: "Вопросы с выбором ответа"
+        },
+        {
+            id: "9",
+            icon: <Icon icon="fluent:tasks-app-24-filled" style={{ marginRight: "6px" }} />,
+            text: "Задачи"
+        },
+        {
+            id: "10",
+            icon: <Icon icon="carbon:lightning" style={{ marginRight: "6px" }} />,
+            text: "Проверка кода"
+        }
+    ]
+}
+
 
 const Course = () => {
 
@@ -19,12 +90,6 @@ const Course = () => {
             <Header type="course" />
             <Stack borderBottomRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"25px"} spacing={3} textAlign={"left"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
                 <Breadcrumb type="course" />
-                {/* <Image
-                    src="https://talks.freelancerepublik.com/wp-content/uploads/2021/12/banner_js.png"
-                    alt='image'
-                    borderRadius='lg'
-                    width={"100%"}
-                /> */}
                 <Heading as='h2' size='xl'>
                     JavaScript Fundamental
                 </Heading>
@@ -40,52 +105,8 @@ const Course = () => {
                 </Link>
             </Stack>
             <Stack mt={4} spacing={4}>
-                <Box>
-                    <Heading mb={3} size='md'>
-                        Список уроков
-                    </Heading>
-                    <Stack border={"1px solid #DEE2E7"} padding={"24px"} borderRadius={"15px"}>
-                        <Link to={"/lesson"}>
-                            <Text fontSize='md'>
-                                Введение
-                            </Text>
-                        </Link>
-                        <Link to={"/lesson"}>
-                            <Text fontSize='md'>
-                                Переменные
-                            </Text>
-                        </Link>
-                        <Link to={"/lesson"}>
-                            <Text fontSize='md'>
-                                Типы данных
-                            </Text>
-                        </Link>
-                        <Link to={"/lesson"}>
-                            <Text fontSize='md'>
-                                Циклы for и while
-                            </Text>
-                        </Link>
-                    </Stack>
-                </Box>
-                <Box>
-                    <Heading mb={3} size='md'>
-                        Учебное пособие включает
-                    </Heading>
-                    <Stack border={"1px solid #DEE2E7"} padding={"24px"} borderRadius={"15px"}>
-                        <Text display={"flex"} alignItems={"center"} fontSize='md'>
-                            <Icon icon="icon-park-outline:video" style={{ marginRight: "6px" }} /> Видео (всего 9 минут)
-                        </Text>
-                        <Text display={"flex"} alignItems={"center"} fontSize='md'>
-                            <Icon icon="ph:question" style={{ marginRight: "6px" }} /> Вопросы с выбором ответа
-                        </Text>
-                        <Text display={"flex"} alignItems={"center"} fontSize='md'>
-                            <Icon icon="fluent:tasks-app-24-filled" style={{ marginRight: "6px" }} /> Задачи
-                        </Text>
-                        <Text display={"flex"} alignItems={"center"} fontSize='md'>
-                            <Icon icon="carbon:lightning" style={{ marginRight: "6px" }} />Проверка кода
-                        </Text>
-                    </Stack>
-                </Box>
+                <Info data={infoLink} />
+                <Info data={infoIcon} />
             </Stack>
         </Box>
     )

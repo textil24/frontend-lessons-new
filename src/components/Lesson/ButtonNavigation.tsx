@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const ButtonNavigation = () => {
     return (
         <Flex
-            mt={4}
+            mt={6}
             justifyContent={"space-between"}
             alignItems={"center"}
         >

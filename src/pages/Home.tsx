@@ -1,9 +1,9 @@
 import { Box, SimpleGrid } from "@chakra-ui/react"
-import Card from "../components/Card"
-import Header from "../components/Header"
 import { useEffect } from "react"
+import { Header } from "../components/@Common"
+import { Card } from "../components/Home"
 
-const cardsItems = [
+const cards = [
     {
         id: 1,
         title: "JavaScript Fundamental"
@@ -20,7 +20,7 @@ const Home = () => {
         <Box>
             <Header type="home" />
             <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-                {cardsItems.map(({ id, title }) =>
+                {cards.map(({ id, title }) =>
                     <Card key={id} title={title} />
                 )}
             </SimpleGrid>
