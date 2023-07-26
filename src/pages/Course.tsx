@@ -14,66 +14,72 @@ interface IBoxItem {
 }
 
 export interface IInfo {
-    id: string
-    title: string
-    type: "link" | "icon",
-    boxItems: IBoxItem[]
+    data: {
+        id: string
+        title: string
+        type: "link" | "icon",
+        boxItems: IBoxItem[]
+    }
 }
 
 const infoLink: IInfo = {
-    id: "1",
-    type: "link",
-    title: "Заголовок Link",
-    boxItems: [
-        {
-            id: "2",
-            link: "/lesson",
-            text: "Введение"
-        },
-        {
-            id: "3",
-            link: "/lesson",
-            text: "Переменные"
-        },
-        {
-            id: "4",
-            link: "/lesson",
-            text: "Типы данных"
-        },
-        {
-            id: "5",
-            link: "/lesson",
-            text: "Циклы for и while"
-        }
-    ]
+    data: {
+        id: "1",
+        type: "link",
+        title: "Заголовок Link",
+        boxItems: [
+            {
+                id: "2",
+                link: "/lesson",
+                text: "Введение"
+            },
+            {
+                id: "3",
+                link: "/lesson",
+                text: "Переменные"
+            },
+            {
+                id: "4",
+                link: "/lesson",
+                text: "Типы данных"
+            },
+            {
+                id: "5",
+                link: "/lesson",
+                text: "Циклы for и while"
+            }
+        ]
+    }
 }
 
 const infoIcon: IInfo = {
-    id: "6",
-    type: "icon",
-    title: "Заголовок Icon",
-    boxItems: [
-        {
-            id: "7",
-            icon: <Icon icon="icon-park-outline:video" style={{ marginRight: "6px" }} />,
-            text: "Видео (всего 9 минут)"
-        },
-        {
-            id: "8",
-            icon: <Icon icon="ph:question" style={{ marginRight: "6px" }} />,
-            text: "Вопросы с выбором ответа"
-        },
-        {
-            id: "9",
-            icon: <Icon icon="fluent:tasks-app-24-filled" style={{ marginRight: "6px" }} />,
-            text: "Задачи"
-        },
-        {
-            id: "10",
-            icon: <Icon icon="carbon:lightning" style={{ marginRight: "6px" }} />,
-            text: "Проверка кода"
-        }
-    ]
+    data: {
+        id: "6",
+        type: "icon",
+        title: "Заголовок Icon",
+        boxItems: [
+            {
+                id: "7",
+                icon: <Icon icon="icon-park-outline:video" style={{ marginRight: "6px" }} />,
+                text: "Видео (всего 9 минут)"
+            },
+            {
+                id: "8",
+                icon: <Icon icon="ph:question" style={{ marginRight: "6px" }} />,
+                text: "Вопросы с выбором ответа"
+            },
+            {
+                id: "9",
+                icon: <Icon icon="fluent:tasks-app-24-filled" style={{ marginRight: "6px" }} />,
+                text: "Задачи"
+            },
+            {
+                id: "10",
+                icon: <Icon icon="carbon:lightning" style={{ marginRight: "6px" }} />,
+                text: "Проверка кода"
+            }
+        ]
+    }
 }
 
 

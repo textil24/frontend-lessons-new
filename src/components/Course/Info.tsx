@@ -3,15 +3,17 @@ import { FC } from "react"
 import { Link } from "react-router-dom"
 import { IInfo } from "../../pages/Course"
 
-const Info: FC<IInfo> = ({ title }) => {
+// ! data.data проблемы с типом
+const Info: FC<any> = ({ data }) => {
+
     return (
         <Box>
             <Heading mb={3} size='md'>
-                {data.title}
+                {data.data.title}
             </Heading>
             <Stack border={"1px solid #DEE2E7"} padding={"24px"} borderRadius={"15px"}>
-                {data.boxItems.map((item) => {
-                    switch (data.type) {
+                {data.data.boxItems.map((item: any) => {
+                    switch (data.data.type) {
                         case "link":
                             return (
                                 <Link key={item.id} to={item.link ?? ""}>
