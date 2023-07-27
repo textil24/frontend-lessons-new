@@ -48,10 +48,10 @@ const Lesson = () => {
     return (
         <Box>
             <Header type="lesson" />
-            {/* <Error /> */}
+            <Error />
             <Breadcrumb />
             {/* <Loading type="lesson" /> */}
-            <Heading my={2} as='h2' size='2xl'>
+            {/* <Heading my={2} as='h2' size='2xl'>
                 Введение
             </Heading>
             <Stack spacing={2}>
@@ -86,7 +86,7 @@ const Lesson = () => {
                     }
                 })}
             </Stack>
-            <ButtonNavigation />
+            <ButtonNavigation /> */}
         </Box>
     )
 }

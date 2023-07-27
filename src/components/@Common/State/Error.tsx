@@ -4,7 +4,7 @@ const Error = () => {
     return (
         <Modal isCentered={true} size={"sm"} isOpen={true} onClose={() => {}}>
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent m={5}>
                 <ModalHeader>Ошибка</ModalHeader>
                 <ModalBody>
                     Произошла ошибка. <br />
@@ -12,8 +12,8 @@ const Error = () => {
                 </ModalBody>
 
                 <ModalFooter display={"flex"} justifyContent={"center"}>
-                    <Button colorScheme='blue' mr={3}>
-                        Close
+                    <Button>
+                        Закрыть
                     </Button>
                 </ModalFooter>
             </ModalContent>
