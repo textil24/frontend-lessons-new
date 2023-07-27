@@ -94,11 +94,11 @@ const Course = () => {
     return (
         <Box>
             <Header type="course" />
-            <Breadcrumb type="course" />
-            <Error />
-            {/* <Stack borderBottomRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"25px"} spacing={3} textAlign={"left"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
+            {/* <Breadcrumb type="course" />
+            <Error /> */}
+            <Stack borderBottomRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"25px"} spacing={3} textAlign={"left"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
                 <Breadcrumb type="course" />
-                <Loading type="course-about" />
+                {/* <Loading type="course-about" /> */}
                 <Heading as='h2' size='xl'>
                     JavaScript Fundamental
                 </Heading>
@@ -114,10 +114,10 @@ const Course = () => {
                 </Link>
             </Stack>
             <Stack mt={4} spacing={4}>
-                <Loading type="course-info" />
+                {/* <Loading type="course-info" /> */}
                 <Info data={infoLink} />
                 <Info data={infoIcon} />
-            </Stack> */}
+            </Stack>
         </Box>
     )
 }
