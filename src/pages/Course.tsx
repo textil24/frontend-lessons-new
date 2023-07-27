@@ -1,10 +1,13 @@
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { Box, Heading, Text, Button, Stack, useColorModeValue } from "@chakra-ui/react"
 import { Icon } from '@iconify/react';
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Breadcrumb, Header, Loading, Error } from "../components/@Common";
 import { Info } from "../components/Course";
+import { GET_COURSE } from "../apollo/course";
+import { useQuery } from "@apollo/client";
+import { IGetCourse } from "../apollo/types";
 
 interface IBoxItem {
     id: string,
@@ -22,70 +25,77 @@ export interface IInfo {
     }
 }
 
-const infoLink: IInfo = {
-    data: {
-        id: "1",
-        type: "link",
-        title: "Список уроков",
-        boxItems: [
-            {
-                id: "2",
-                link: "/lesson",
-                text: "Введение"
-            },
-            {
-                id: "3",
-                link: "/lesson",
-                text: "Переменные"
-            },
-            {
-                id: "4",
-                link: "/lesson",
-                text: "Типы данных"
-            },
-            {
-                id: "5",
-                link: "/lesson",
-                text: "Циклы for и while"
-            }
-        ]
-    }
-}
+// const infoLink: IInfo = {
+//     data: {
+//         id: "1",
+//         type: "link",
+//         title: "Список уроков",
+//         boxItems: [
+//             {
+//                 id: "2",
+//                 link: "/lesson",
+//                 text: "Введение"
+//             },
+//             {
+//                 id: "3",
+//                 link: "/lesson",
+//                 text: "Переменные"
+//             },
+//             {
+//                 id: "4",
+//                 link: "/lesson",
+//                 text: "Типы данных"
+//             },
+//             {
+//                 id: "5",
+//                 link: "/lesson",
+//                 text: "Циклы for и while"
+//             }
+//         ]
+//     }
+// }
 
-const infoIcon: IInfo = {
-    data: {
-        id: "6",
-        type: "icon",
-        title: "Это учебное пособие",
-        boxItems: [
-            {
-                id: "7",
-                icon: <Icon icon="icon-park-outline:video" style={{ marginRight: "6px" }} />,
-                text: "Видео (всего 9 минут)"
-            },
-            {
-                id: "8",
-                icon: <Icon icon="ph:question" style={{ marginRight: "6px" }} />,
-                text: "Вопросы с выбором ответа"
-            },
-            {
-                id: "9",
-                icon: <Icon icon="fluent:tasks-app-24-filled" style={{ marginRight: "6px" }} />,
-                text: "Задачи"
-            },
-            {
-                id: "10",
-                icon: <Icon icon="carbon:lightning" style={{ marginRight: "6px" }} />,
-                text: "Проверка кода"
-            }
-        ]
-    }
-}
+// const infoIcon: IInfo = {
+//     data: {
+//         id: "6",
+//         type: "icon",
+//         title: "Это учебное пособие",
+//         boxItems: [
+//             {
+//                 id: "7",
+//                 icon: <Icon icon="icon-park-outline:video" style={{ marginRight: "6px" }} />,
+//                 text: "Видео (всего 9 минут)"
+//             },
+//             {
+//                 id: "8",
+//                 icon: <Icon icon="ph:question" style={{ marginRight: "6px" }} />,
+//                 text: "Вопросы с выбором ответа"
+//             },
+//             {
+//                 id: "9",
+//                 icon: <Icon icon="fluent:tasks-app-24-filled" style={{ marginRight: "6px" }} />,
+//                 text: "Задачи"
+//             },
+//             {
+//                 id: "10",
+//                 icon: <Icon icon="carbon:lightning" style={{ marginRight: "6px" }} />,
+//                 text: "Проверка кода"
+//             }
+//         ]
+//     }
+// }
 
 
 const Course = () => {
 
     const bgColor = useColorModeValue('#F4F6F8', '#2D3748')
+    const params = useParams()
+
+    const { data: course, loading, error } = useQuery<IGetCourse>(GET_COURSE, {
+        variables: {
+            getCourseId: params.id ?? ""
+        }
+    })
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -94,29 +104,46 @@ const Course = () => {
     return (
         <Box>
             <Header type="course" />
-            {/* <Breadcrumb type="course" />
-            <Error /> */}
             <Stack borderBottomRadius={"40px"} marginTop={"-90px"} paddingTop={"90px"} paddingBottom={"25px"} spacing={3} textAlign={"left"} bgColor={bgColor} marginX={"-16px"} paddingX={"16px"}>
-                <Breadcrumb type="course" />
-                {/* <Loading type="course-about" /> */}
-                <Heading as='h2' size='xl'>
-                    JavaScript Fundamental
-                </Heading>
-                <Text fontSize='lg'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae necessitatibus dignissimos illo ipsam minima explicabo repellat vitae, sequi dolorem aliquid enim aut at fugit voluptate. Ex sequi quibusdam officia odit!
-                </Text>
-                <Link to={"/lesson"}>
-                    <Box mt={5} textAlign={"center"}>
-                        <Button rightIcon={<ArrowForwardIcon />} colorScheme='whatsapp' size='md'>
-                            Приступить
-                        </Button>
-                    </Box>
-                </Link>
+                {error && <Error />}
+                {loading && <Loading type="course-about" />}
+                {course && (
+                    <>
+                        <Breadcrumb id={course?.getCourse.id} type="course" />
+                        <Heading as='h2' size='xl'>
+                            {course?.getCourse.name}
+                        </Heading>
+                        <Text fontSize='lg'>
+                            {course?.getCourse.description}
+                        </Text>
+                        <Link to={"/lesson"}>
+                            <Box mt={5} textAlign={"center"}>
+                                <Button rightIcon={<ArrowForwardIcon />} colorScheme='whatsapp' size='md'>
+                                    Приступить
+                                </Button>
+                            </Box>
+                        </Link>
+                    </>
+                )}
             </Stack>
             <Stack mt={4} spacing={4}>
-                {/* <Loading type="course-info" /> */}
-                <Info data={infoLink} />
-                <Info data={infoIcon} />
+                {loading && <Loading type="course-info" />}
+                {course &&
+                    <Info data={{
+                        data: {
+                            id: "1",
+                            type: "link",
+                            title: "Список уроков",
+                            boxItems: course?.getCourse.lessons.map(lesson =>
+                            ({
+                                id: lesson.id,
+                                link: "/lessons/" + lesson.id,
+                                text: lesson.name
+                            }))
+                        }
+                    }} />
+                }
+                {/* <Info data={infoIcon} /> */}
             </Stack>
         </Box>
     )

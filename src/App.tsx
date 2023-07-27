@@ -10,12 +10,12 @@ const routes = [
   },
   {
     id: 2,
-    path: "/course",
+    path: "/courses/:id",
     element: <Course />
   },
   {
     id: 3,
-    path: "/lesson",
+    path: "/lessons/:id",
     element: <Lesson />
   }
 ]

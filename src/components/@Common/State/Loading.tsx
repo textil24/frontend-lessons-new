@@ -1,6 +1,7 @@
 import { Card as CardItem, CardBody, Heading, Stack, Text, Badge, Skeleton, useColorModeValue, Box, Button, Flex } from "@chakra-ui/react"
 import { FC } from "react"
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons"
+import Breadcrumb from "../Breadcrumb"
 
 const cards = [1, 2, 3]
 const infoElements = [1, 2, 3, 4]
@@ -42,6 +43,9 @@ const Loading: FC<ILoading> = ({ type }) => {
             return (
                 <>
                     <Skeleton>
+                        <Breadcrumb id="" type="course" />
+                    </Skeleton>
+                    <Skeleton>
                         <Heading as='h2' size='xl'>
                             Lorem ipsum
                         </Heading>
@@ -77,7 +81,7 @@ const Loading: FC<ILoading> = ({ type }) => {
                             )}
                         </Stack>
                     </Box>
-                    <Box>
+                    {/* <Box>
                         <Heading mb={3} size='md'>
                             Это учебное пособие
                         </Heading>
@@ -90,7 +94,7 @@ const Loading: FC<ILoading> = ({ type }) => {
                                 </Skeleton>
                             )}
                         </Stack>
-                    </Box>
+                    </Box> */}
                 </>
             )
         case "lesson":

@@ -12,9 +12,9 @@ const Error = () => {
                 </ModalBody>
 
                 <ModalFooter display={"flex"} justifyContent={"center"}>
-                    <Button>
+                    {/* <Button>
                         Закрыть
-                    </Button>
+                    </Button> */}
                 </ModalFooter>
             </ModalContent>
         </Modal>
