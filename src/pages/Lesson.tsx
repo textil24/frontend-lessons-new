@@ -51,6 +51,10 @@ const Lesson = () => {
         }
     })
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [params.id])
+
     return (
         <Box>
             <Header 
