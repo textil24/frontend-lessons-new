@@ -7,7 +7,7 @@ const cards = [1, 2, 3]
 const infoElements = [1, 2, 3, 4]
 
 interface ILoading {
-    type: "home" | "course-about" | "course-info" | "lesson"
+    type: "home" | "course-about" | "course-info" | "lesson" | "burger-items" | "burger-heading"
 }
 
 const Loading: FC<ILoading> = ({ type }) => {
@@ -149,6 +149,46 @@ const Loading: FC<ILoading> = ({ type }) => {
 
                     </Flex>
                 </>
+            )
+        case "burger-items":
+            return (
+                <Stack spacing={2}>
+                    <Skeleton>
+                        <Heading as='h5' size='sm'>
+                            Lorem ipsum
+                        </Heading>
+                    </Skeleton>
+                    <Skeleton>
+                        <Heading as='h5' size='sm'>
+                            Lorem ipsum
+                        </Heading>
+                    </Skeleton>
+                    <Skeleton>
+                        <Heading as='h5' size='sm'>
+                            Lorem ipsum
+                        </Heading>
+                    </Skeleton>
+                    <Skeleton>
+                        <Heading as='h5' size='sm'>
+                            Lorem ipsum
+                        </Heading>
+                    </Skeleton>
+                    <Skeleton>
+                        <Heading as='h5' size='sm'>
+                            Lorem ipsum
+                        </Heading>
+                    </Skeleton>
+                </Stack>
+            )
+        case "burger-heading":
+            return (
+                <Stack spacing={2}>
+                    <Skeleton>
+                        <Button width={"200px"} leftIcon={<ArrowBackIcon />} mr={2} >
+                            Lorem ipsum
+                        </Button>
+                    </Skeleton>
+                </Stack>
             )
         default:
             return null

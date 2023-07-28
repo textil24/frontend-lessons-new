@@ -57,9 +57,7 @@ const Lesson = () => {
 
     return (
         <Box>
-            <Header 
-                lesson={lesson}
-                type="lesson" />
+            <Header lesson={lesson} loading={loading} type="lesson" />
             {error && <Error />}
             {loading && <Loading type="lesson" />}
             {lesson && (

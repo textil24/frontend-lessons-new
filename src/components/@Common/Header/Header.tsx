@@ -4,13 +4,15 @@ import { FC } from "react"
 import ButtonColorMode from "./ButtonColorMode"
 import { Link } from "react-router-dom";
 import { IGetLesson } from "../../../apollo/types";
+import Loading from "../State/Loading";
 
 interface IHeader {
     lesson?: IGetLesson
+    loading?: boolean
     type: "home" | "course" | "lesson"
 }
 
-const Header: FC<IHeader> = ({ type, lesson }) => {
+const Header: FC<IHeader> = ({ type, lesson, loading }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const bgColor = useColorModeValue('white', '#1A202C')
@@ -41,6 +43,7 @@ const Header: FC<IHeader> = ({ type, lesson }) => {
                             <DrawerOverlay />
                             <DrawerContent>
                                 <DrawerHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} borderBottomWidth="1px">
+                                    {loading && <Loading type="burger-heading" />}
                                     <Link to={"/courses/" + lesson?.getLesson.course.id}>
                                         <Button leftIcon={<ArrowBackIcon />} onClick={() => onClose()} mr={2} >
                                             {lesson?.getLesson.course.name}
@@ -51,10 +54,11 @@ const Header: FC<IHeader> = ({ type, lesson }) => {
                                     </Button>
                                 </DrawerHeader>
                                 <DrawerBody onClick={() => onClose()}>
+                                    {loading && <Loading type="burger-items" />}
                                     <Stack spacing={2}>
                                         {lesson?.getLesson.course.lessons.map(({ id, name }) =>
                                             <Link key={id} onClick={() => onClose()} to={"/lessons/" + id}>
-                                                <Heading as='h4' size='md'>
+                                                <Heading as='h5' size='sm'>
                                                     {name}
                                                 </Heading>
                                             </Link>
