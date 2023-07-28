@@ -9,6 +9,7 @@ interface IHeader {
 }
 
 const Header: FC<IHeader> = ({ type }) => {
+
     const { isOpen, onOpen, onClose } = useDisclosure();
     const bgColor = useColorModeValue('white', '#1A202C')
 

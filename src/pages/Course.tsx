@@ -109,14 +109,14 @@ const Course = () => {
                 {loading && <Loading type="course-about" />}
                 {course && (
                     <>
-                        <Breadcrumb id={course?.getCourse.id} type="course" />
+                        <Breadcrumb courseId={course?.getCourse.id} type="course" />
                         <Heading as='h2' size='xl'>
                             {course?.getCourse.name}
                         </Heading>
                         <Text fontSize='lg'>
                             {course?.getCourse.description}
                         </Text>
-                        <Link to={"/lesson"}>
+                        <Link to={"/lessons/" + course?.getCourse.lessons[0].id}>
                             <Box mt={5} textAlign={"center"}>
                                 <Button rightIcon={<ArrowForwardIcon />} colorScheme='whatsapp' size='md'>
                                     Приступить

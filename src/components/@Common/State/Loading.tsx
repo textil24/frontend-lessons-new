@@ -43,7 +43,7 @@ const Loading: FC<ILoading> = ({ type }) => {
             return (
                 <>
                     <Skeleton>
-                        <Breadcrumb id="" type="course" />
+                        <Breadcrumb courseId="" type="course" />
                     </Skeleton>
                     <Skeleton>
                         <Heading as='h2' size='xl'>
@@ -100,6 +100,9 @@ const Loading: FC<ILoading> = ({ type }) => {
         case "lesson":
             return (
                 <>
+                    <Skeleton>
+                        <Breadcrumb courseId="" />
+                    </Skeleton>
                     <Skeleton>
                         <Heading my={2} as='h2' size='2xl'>
                             Lorem ipsum

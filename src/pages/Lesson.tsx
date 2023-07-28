@@ -2,6 +2,10 @@ import { Box, Heading, Stack, Text, Image } from "@chakra-ui/react"
 import { useEffect } from "react"
 import { Breadcrumb, Header, Loading, Error } from "../components/@Common"
 import { ButtonNavigation, Monaco, Prism } from "../components/Lesson"
+import { useParams } from "react-router-dom"
+import { useQuery } from "@apollo/client"
+import { GET_LESSON } from "../apollo/lesson"
+import { IGetLesson } from "../apollo/types"
 
 enum LessonElementType {
     title = "title",
@@ -40,6 +44,14 @@ const lessonElements = [
 ]
 
 const Lesson = () => {
+    const params = useParams()
+    const { data: lesson, loading, error } = useQuery<IGetLesson>(GET_LESSON, {
+        variables: {
+            getLessonId: params.id ?? ""
+        }
+    })
+
+    console.log(lesson)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -48,45 +60,49 @@ const Lesson = () => {
     return (
         <Box>
             <Header type="lesson" />
-            {/* <Error />
-            <Breadcrumb /> */}
-            {/* <Loading type="lesson" /> */}
-            <Heading my={2} as='h2' size='2xl'>
-                Введение
-            </Heading>
-            <Stack spacing={2}>
-                {lessonElements.map(({ id, type, content }) => {
-                    switch (type) {
-                        case LessonElementType.title:
-                            return (
-                                <Heading key={id} as='h2' size='xl'>
-                                    {content}
-                                </Heading>
-                            )
-                        case LessonElementType.text:
-                            return (
-                                <Text key={id} fontSize='md'>
-                                    {content}
-                                </Text>
-                            )
-                        case LessonElementType.image:
-                            return (
-                                <Image key={id} sizes={"100%"} src={content} alt='Image' />
-                            )
-                        case LessonElementType.prism:
-                            return (
-                                <Prism key={id} code={content} />
-                            )
-                        case LessonElementType.monaco:
-                            return (
-                                <Monaco key={id} code={[content]} />
-                            )
-                        default:
-                            return null
-                    }
-                })}
-            </Stack>
-            <ButtonNavigation />
+            {error && <Error />}
+            {loading && <Loading type="lesson" />}
+            {lesson && (
+                <>
+                    <Breadcrumb courseId={lesson.getLesson.course.id} lessonId={lesson.getLesson.id} />
+                    <Heading my={2} as='h2' size='2xl'>
+                        {lesson.getLesson.name}
+                    </Heading>
+                    <Stack spacing={2}>
+                        {lesson?.getLesson.content.map(({ id, type, content }, index) => {
+                            switch (type) {
+                                case LessonElementType.title:
+                                    return (
+                                        <Heading key={`${index}_${id}`} as='h2' size='xl'>
+                                            {content}
+                                        </Heading>
+                                    )
+                                case LessonElementType.text:
+                                    return (
+                                        <Text key={`${index}_${id}`} fontSize='md'>
+                                            {content}
+                                        </Text>
+                                    )
+                                case LessonElementType.image:
+                                    return (
+                                        <Image key={`${index}_${id}`} sizes={"100%"} src={content} alt='Image' />
+                                    )
+                                case LessonElementType.prism:
+                                    return (
+                                        <Prism key={`${index}_${id}`} code={content} />
+                                    )
+                                case LessonElementType.monaco:
+                                    return (
+                                        <Monaco key={`${index}_${id}`} code={[content]} />
+                                    )
+                                default:
+                                    return null
+                            }
+                        })}
+                    </Stack>
+                    <ButtonNavigation prevId={lesson.getLesson.prevLessonId} nextId={lesson.getLesson.nextLessonId} />
+                </>
+            )}
         </Box>
     )
 }

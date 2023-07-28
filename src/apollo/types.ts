@@ -10,8 +10,7 @@ export interface IGetCourses {
 }
 
 export interface IGetCourse {
-    getCourse:
-    {
+    getCourse: {
         id: string
         name: string
         description: string
@@ -21,5 +20,24 @@ export interface IGetCourse {
                 name: string
             }
         ]
+    }
+}
+
+export interface IGetLesson {
+    getLesson: {
+        id: string
+        name: string
+        nextLessonId: string
+        prevLessonId: string
+        content: [
+            {
+                id: string,
+                type: "title" | "text" | "image" | "prism" | "monaco"
+                content: string
+            }
+        ]
+        course: {
+            id: string
+        }
     }
 }
