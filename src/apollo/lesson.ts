@@ -11,6 +11,10 @@ export const GET_LESSON = gql`
             course {
                 id
                 name
+                lessons {
+                    name
+                    id
+                }
             }
         }
     }

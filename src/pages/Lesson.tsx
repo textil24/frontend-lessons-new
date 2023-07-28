@@ -51,15 +51,11 @@ const Lesson = () => {
         }
     })
 
-    console.log(lesson)
-
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-
     return (
         <Box>
-            <Header type="lesson" />
+            <Header 
+                lesson={lesson}
+                type="lesson" />
             {error && <Error />}
             {loading && <Loading type="lesson" />}
             {lesson && (

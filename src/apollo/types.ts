@@ -38,6 +38,13 @@ export interface IGetLesson {
         ]
         course: {
             id: string
+            name: string
+            lessons: [
+                {
+                    id: string
+                    name: string
+                }
+            ]
         }
     }
 }
