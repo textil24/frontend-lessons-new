@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, Skeleton } from "@chakra-ui/react"
+import { Box, SimpleGrid } from "@chakra-ui/react"
 import { useEffect } from "react"
 import { Header, Loading, Error } from "../components/@Common"
 import { Card } from "../components/Home"

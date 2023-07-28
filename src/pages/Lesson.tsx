@@ -15,33 +15,33 @@ enum LessonElementType {
     monaco = "monaco"
 }
 
-const lessonElements = [
-    {
-        id: 1,
-        type: LessonElementType.title,
-        content: "1 Title"
-    },
-    {
-        id: 2,
-        type: LessonElementType.text,
-        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-    },
-    {
-        id: 3,
-        type: LessonElementType.image,
-        content: "https://bit.ly/dan-abramov"
-    },
-    {
-        id: 4,
-        type: LessonElementType.prism,
-        content: "let val = 666;"
-    },
-    {
-        id: 5,
-        type: LessonElementType.monaco,
-        content: "let val = 777;"
-    }
-]
+// const lessonElements = [
+//     {
+//         id: 1,
+//         type: LessonElementType.title,
+//         content: "1 Title"
+//     },
+//     {
+//         id: 2,
+//         type: LessonElementType.text,
+//         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+//     },
+//     {
+//         id: 3,
+//         type: LessonElementType.image,
+//         content: "https://bit.ly/dan-abramov"
+//     },
+//     {
+//         id: 4,
+//         type: LessonElementType.prism,
+//         content: "let val = 666;"
+//     },
+//     {
+//         id: 5,
+//         type: LessonElementType.monaco,
+//         content: "let val = 777;"
+//     }
+// ]
 
 const Lesson = () => {
     const params = useParams()

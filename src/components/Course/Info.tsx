@@ -1,7 +1,6 @@
 import { Box, Heading, Stack, Text } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { IInfo } from "../../pages/Course"
 
 // ! data.data проблемы с типом
 const Info: FC<any> = ({ data }) => {

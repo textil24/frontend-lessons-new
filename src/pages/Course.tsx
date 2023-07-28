@@ -1,8 +1,7 @@
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { Box, Heading, Text, Button, Stack, useColorModeValue } from "@chakra-ui/react"
-import { Icon } from '@iconify/react';
 import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Breadcrumb, Header, Loading, Error } from "../components/@Common";
 import { Info } from "../components/Course";
 import { GET_COURSE } from "../apollo/course";

@@ -1,5 +1,5 @@
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons"
-import { Box, Button, Flex, Grid, GridItem } from "@chakra-ui/react"
+import { Button, Grid, GridItem } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 

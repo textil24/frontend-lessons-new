@@ -1,4 +1,4 @@
-import { Card as CardItem, CardBody, Heading, Stack, Text, Badge, Skeleton, useColorModeValue, Box, Button, Flex } from "@chakra-ui/react"
+import { Card as CardItem, CardBody, Heading, Stack, Text, Badge, Skeleton, Box, Button, Flex } from "@chakra-ui/react"
 import { FC } from "react"
 import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import Breadcrumb from "../Breadcrumb"
