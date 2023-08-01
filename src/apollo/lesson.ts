@@ -6,6 +6,7 @@ export const GET_LESSON = gql`
             id
             name
             content
+            orderBy
             nextLessonId
             prevLessonId
             course {

@@ -66,7 +66,7 @@ const Lesson = () => {
                         courseId={lesson.getLesson.course.id}
                         courseName={lesson.getLesson.course.name}
                         lessonId={lesson.getLesson.id} 
-                        lessonName={lesson.getLesson.name}
+                        lessonOrder={lesson.getLesson.orderBy}
                         />
                     <Heading my={2} as='h2' size='2xl'>
                         {lesson.getLesson.name}

@@ -29,6 +29,7 @@ export interface IGetLesson {
         name: string
         nextLessonId: string
         prevLessonId: string
+        orderBy: number,
         content: [
             {
                 id: string,

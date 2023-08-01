@@ -7,11 +7,11 @@ interface IBreadcrumb {
     courseId: string | undefined
     courseName?: string | undefined
     lessonId?: string | undefined
-    lessonName?: string | undefined
+    lessonOrder?: number | undefined
     type?: "course"
 }
 
-const Breadcrumb: FC<IBreadcrumb> = ({ courseId, courseName, lessonId, lessonName, type }) => {
+const Breadcrumb: FC<IBreadcrumb> = ({ courseId, courseName, lessonId, lessonOrder, type }) => {
     return (
         <BreadcrumbItem spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
             <BreadcrumbWrapper>
@@ -26,7 +26,7 @@ const Breadcrumb: FC<IBreadcrumb> = ({ courseId, courseName, lessonId, lessonNam
 
             {!(type === "course") && (
                 <BreadcrumbWrapper>
-                    <Link to={'/lessons/' + lessonId}>{lessonName}</Link>
+                    <Link to={'/lessons/' + lessonId}>Урок {lessonOrder}</Link>
                 </BreadcrumbWrapper>
             )}
 
