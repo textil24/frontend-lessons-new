@@ -25,7 +25,7 @@ const Breadcrumb: FC<IBreadcrumb> = ({ courseId, courseName, lessonId, lessonOrd
             </BreadcrumbWrapper>
 
             {!(type === "course") && (
-                <BreadcrumbWrapper>
+                <BreadcrumbWrapper minWidth={"50px"}>
                     <Link to={'/lessons/' + lessonId}>Урок {lessonOrder}</Link>
                 </BreadcrumbWrapper>
             )}
