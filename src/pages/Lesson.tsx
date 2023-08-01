@@ -62,7 +62,9 @@ const Lesson = () => {
             {loading && <Loading type="lesson" />}
             {lesson && (
                 <>
-                    <Breadcrumb courseId={lesson.getLesson.course.id} lessonId={lesson.getLesson.id} />
+                    <Breadcrumb
+                        courseId={lesson.getLesson.course.id}
+                        lessonId={lesson.getLesson.id} />
                     <Heading my={2} as='h2' size='2xl'>
                         {lesson.getLesson.name}
                     </Heading>
@@ -98,7 +100,10 @@ const Lesson = () => {
                             }
                         })}
                     </Stack>
-                    <ButtonNavigation prevId={lesson.getLesson.prevLessonId} nextId={lesson.getLesson.nextLessonId} />
+                    <ButtonNavigation 
+                    courseId={lesson.getLesson.course.id}
+                    prevId={lesson.getLesson.prevLessonId} 
+                    nextId={lesson.getLesson.nextLessonId} />
                 </>
             )}
         </Box>

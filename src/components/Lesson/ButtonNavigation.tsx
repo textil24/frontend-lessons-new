@@ -1,21 +1,22 @@
-import { ArrowBackIcon, ArrowForwardIcon } from "@chakra-ui/icons"
+import { ArrowBackIcon, ArrowForwardIcon, CheckIcon } from "@chakra-ui/icons"
 import { Button, Grid, GridItem } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom"
 
 interface IButtonNavigation {
+    courseId?: string
     prevId: string | null
     nextId: string | null
 }
 
-const ButtonNavigation: FC<IButtonNavigation> = ({ prevId, nextId }) => {
+const ButtonNavigation: FC<IButtonNavigation> = ({ courseId, prevId, nextId }) => {
     return (
         <Grid templateColumns='1fr 1fr' mt={6} alignItems={"center"}>
             {prevId ? (
                 <GridItem justifySelf={"flex-start"}>
                     <Link to={"/lessons/" + prevId}>
-                        <Button leftIcon={<ArrowBackIcon />} colorScheme='gray'>
-                            Предыдущий
+                        <Button>
+                            <ArrowBackIcon />
                         </Button>
                     </Link>
                 </GridItem >
@@ -25,13 +26,19 @@ const ButtonNavigation: FC<IButtonNavigation> = ({ prevId, nextId }) => {
             {nextId ? (
                 <GridItem justifySelf={"flex-end"}>
                     <Link to={"/lessons/" + nextId}>
-                        <Button rightIcon={<ArrowForwardIcon />} colorScheme='gray'>
-                            Следующий
+                        <Button>
+                            <ArrowForwardIcon />
                         </Button>
                     </Link>
                 </GridItem >
             ) : (
-                <span></span>
+                <GridItem justifySelf={"flex-end"}>
+                    <Link to={"/courses/" + courseId}>
+                        <Button leftIcon={<CheckIcon />} colorScheme='whatsapp'>
+                            Завершить
+                        </Button>
+                    </Link>
+                </GridItem >
             )}
         </Grid>
     )
