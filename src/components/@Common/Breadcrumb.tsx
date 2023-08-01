@@ -5,11 +5,13 @@ import { Link } from "react-router-dom"
 
 interface IBreadcrumb {
     courseId: string | undefined
+    courseName?: string | undefined
     lessonId?: string | undefined
+    lessonName?: string | undefined
     type?: "course"
 }
 
-const Breadcrumb: FC<IBreadcrumb> = ({ courseId, lessonId, type }) => {
+const Breadcrumb: FC<IBreadcrumb> = ({ courseId, courseName, lessonId, lessonName, type }) => {
     return (
         <BreadcrumbItem spacing='8px' separator={<ChevronRightIcon color='gray.500' />}>
             <BreadcrumbWrapper>
@@ -19,12 +21,12 @@ const Breadcrumb: FC<IBreadcrumb> = ({ courseId, lessonId, type }) => {
             </BreadcrumbWrapper>
 
             <BreadcrumbWrapper>
-                    <Link to={'/courses/' + courseId}>Course</Link>
+                    <Link to={'/courses/' + courseId}>{courseName}</Link>
             </BreadcrumbWrapper>
 
             {!(type === "course") && (
                 <BreadcrumbWrapper>
-                    <Link to={'/lessons/' + lessonId}>Lesson</Link>
+                    <Link to={'/lessons/' + lessonId}>{lessonName}</Link>
                 </BreadcrumbWrapper>
             )}
 

@@ -19,7 +19,7 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
 
     return (
         <Box mb={6} position={"fixed"} top={"0"} right={"0"} width={"100%"} zIndex={999} px={"16px"} py={"16px"} bgColor={bgColor} boxShadow='md'>
-            <Grid templateColumns='48px 1fr 48px'>
+            <Grid alignItems={"center"} templateColumns='48px 1fr 48px'>
                 {type === "home" && (
                     <Box order={"1"}></Box>
                 )}
@@ -69,8 +69,8 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
                         </Drawer>
                     </Box>
                 )}
-                <Heading order={"2"} textAlign="center" bgGradient="linear(to-l, #FF4E50, #F9D423)" bgClip="text">
-                    Best Courses
+                <Heading order={"2"} textAlign="center" size='lg'>
+                    Nexign Academy
                 </Heading>
                 <ButtonColorMode />
             </Grid>

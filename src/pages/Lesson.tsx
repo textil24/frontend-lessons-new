@@ -64,7 +64,10 @@ const Lesson = () => {
                 <>
                     <Breadcrumb
                         courseId={lesson.getLesson.course.id}
-                        lessonId={lesson.getLesson.id} />
+                        courseName={lesson.getLesson.course.name}
+                        lessonId={lesson.getLesson.id} 
+                        lessonName={lesson.getLesson.name}
+                        />
                     <Heading my={2} as='h2' size='2xl'>
                         {lesson.getLesson.name}
                     </Heading>
@@ -100,10 +103,10 @@ const Lesson = () => {
                             }
                         })}
                     </Stack>
-                    <ButtonNavigation 
-                    courseId={lesson.getLesson.course.id}
-                    prevId={lesson.getLesson.prevLessonId} 
-                    nextId={lesson.getLesson.nextLessonId} />
+                    <ButtonNavigation
+                        courseId={lesson.getLesson.course.id}
+                        prevId={lesson.getLesson.prevLessonId}
+                        nextId={lesson.getLesson.nextLessonId} />
                 </>
             )}
         </Box>
