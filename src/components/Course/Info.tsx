@@ -11,13 +11,13 @@ const Info: FC<any> = ({ data }) => {
                 {data.data.title}
             </Heading>
             <Stack border={"1px solid #DEE2E7"} padding={"24px"} borderRadius={"15px"}>
-                {data.data.boxItems.map((item: any) => {
+                {data.data.boxItems.map((item: any, index: any) => {
                     switch (data.data.type) {
                         case "link":
                             return (
                                 <Link key={item.id} to={item.link ?? ""}>
                                     <Text fontSize='md'>
-                                        {item.text}
+                                        {index + 1}. {item.text}
                                     </Text>
                                 </Link>
                             )

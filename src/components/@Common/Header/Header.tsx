@@ -46,7 +46,8 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
                                     {loading && <Loading type="burger-heading" />}
                                     <Link to={"/courses/" + lesson?.getLesson.course.id}>
                                         <Button leftIcon={<ArrowBackIcon />} onClick={() => onClose()} mr={2} >
-                                            {lesson?.getLesson.course.name}
+                                            {/* {lesson?.getLesson.course.name} */}
+                                            Страница курса
                                         </Button>
                                     </Link>
                                     <Button onClick={() => onClose()} >
@@ -56,10 +57,10 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
                                 <DrawerBody onClick={() => onClose()}>
                                     {loading && <Loading type="burger-items" />}
                                     <Stack spacing={2}>
-                                        {lesson?.getLesson.course.lessons.map(({ id, name }) =>
+                                        {lesson?.getLesson.course.lessons.map(({ id, name }, index) =>
                                             <Link key={id} onClick={() => onClose()} to={"/lessons/" + id}>
-                                                <Heading as='h5' size='sm'>
-                                                    {name}
+                                                <Heading fontWeight={"normal"} as='h5' size='sm'>
+                                                    {index + 1}. {name}
                                                 </Heading>
                                             </Link>
                                         )}

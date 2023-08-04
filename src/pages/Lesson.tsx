@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
 import { GET_LESSON } from "../apollo/lesson"
 import { IGetLesson } from "../apollo/types"
+import parse from 'html-react-parser';
 
 enum LessonElementType {
     title = "title",
@@ -14,34 +15,6 @@ enum LessonElementType {
     prism = "prism",
     monaco = "monaco"
 }
-
-// const lessonElements = [
-//     {
-//         id: 1,
-//         type: LessonElementType.title,
-//         content: "1 Title"
-//     },
-//     {
-//         id: 2,
-//         type: LessonElementType.text,
-//         content: "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-//     },
-//     {
-//         id: 3,
-//         type: LessonElementType.image,
-//         content: "https://bit.ly/dan-abramov"
-//     },
-//     {
-//         id: 4,
-//         type: LessonElementType.prism,
-//         content: "let val = 666;"
-//     },
-//     {
-//         id: 5,
-//         type: LessonElementType.monaco,
-//         content: "let val = 777;"
-//     }
-// ]
 
 const Lesson = () => {
     const params = useParams()
@@ -65,10 +38,10 @@ const Lesson = () => {
                     <Breadcrumb
                         courseId={lesson.getLesson.course.id}
                         courseName={lesson.getLesson.course.name}
-                        lessonId={lesson.getLesson.id} 
+                        lessonId={lesson.getLesson.id}
                         lessonOrder={lesson.getLesson.orderBy}
-                        />
-                    <Heading my={2} as='h2' size='2xl'>
+                    />
+                    <Heading my={2} fontSize={24}>
                         {lesson.getLesson.name}
                     </Heading>
                     <Stack spacing={2}>
@@ -76,14 +49,20 @@ const Lesson = () => {
                             switch (type) {
                                 case LessonElementType.title:
                                     return (
-                                        <Heading key={`${index}_${id}`} as='h2' size='xl'>
+                                        <Heading key={`${index}_${id}`} size='md'>
                                             {content}
                                         </Heading>
                                     )
+                                // case LessonElementType.text:
+                                //     return (
+                                //         <Text key={`${index}_${id}`} fontSize='md'>
+                                //             {content}
+                                //         </Text>
+                                //     )
                                 case LessonElementType.text:
                                     return (
                                         <Text key={`${index}_${id}`} fontSize='md'>
-                                            {content}
+                                            {parse(content)}
                                         </Text>
                                     )
                                 case LessonElementType.image:
