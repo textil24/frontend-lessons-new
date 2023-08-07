@@ -23,6 +23,12 @@ export interface IGetCourse {
     }
 }
 
+export interface LessonElement {
+    id: string;
+    type: "title" | "text" | "image" | "prism" | "monaco";
+    content: string;
+  }  
+
 export interface IGetLesson {
     getLesson: {
         id: string
@@ -31,10 +37,19 @@ export interface IGetLesson {
         prevLessonId: string
         orderBy: number,
         content: [
+            LessonElement,
             {
                 id: string,
-                type: "title" | "text" | "image" | "prism" | "monaco"
-                content: string
+                type: "answerSelector",
+                question: string,
+                answers: string[],
+                corrects: string[]
+            },
+            {
+                id: string,
+                type: "task"
+                title: string,
+                text: string
             }
         ]
         course: {
