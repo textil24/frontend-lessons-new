@@ -70,8 +70,8 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
                         </Drawer>
                     </Box>
                 )}
-                <Heading order={"2"} textAlign="center" size='lg'>
-                    Nexign Academy
+                <Heading fontFamily={"monospace"} order={"2"} textAlign="center" size='lg'>
+                    <span style={{ color: "#22C35E" }}>nexign&lt;</span>academy<span style={{ color: "#22C35E" }}>&gt;</span>
                 </Heading>
                 <ButtonColorMode />
             </Grid>
