@@ -5,6 +5,7 @@ import ButtonColorMode from "./ButtonColorMode"
 import { Link } from "react-router-dom";
 import { IGetLesson } from "../../../apollo/types";
 import Loading from "../State/Loading";
+import { Account } from "..";
 
 interface IHeader {
     lesson?: IGetLesson
@@ -73,7 +74,10 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
                 <Heading display={"flex"} justifyContent={"center"} fontFamily={"monospace"} order={"2"} textAlign="center" size='lg'>
                     <span style={{ color: "#22C35E" }}>nexign&lt;</span>academy<span style={{ color: "#22C35E" }}>&gt;</span>
                 </Heading>
-                <ButtonColorMode />
+                <Flex order={"3"} justifyContent={"flex-end"} >
+                    <Account />
+                </Flex>
+                {/* <ButtonColorMode /> */}
             </Grid>
         </Box>
     );
