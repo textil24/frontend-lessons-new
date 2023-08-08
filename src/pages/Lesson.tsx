@@ -46,12 +46,12 @@ const Lesson = () => {
                     <Heading my={2} fontSize={24}>
                         {lesson.getLesson.name}
                     </Heading>
-                    <Stack spacing={2}>
+                    <Stack spacing={4}>
                         {lesson?.getLesson.content.map((item, index) => {
                             switch (item.type) {
                                 case LessonElementType.title:
                                     return (
-                                        <Heading key={`${index}_${item.id}`} size='md'>
+                                        <Heading mt={4} key={`${index}_${item.id}`} size='md'>
                                             {item.content}
                                         </Heading>
                                     )
