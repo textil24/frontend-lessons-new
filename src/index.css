@@ -3,3 +3,11 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+code {
+    padding: 0 3px;
+    background-color: #EBEEF0;
+    font-weight: 600;
+    color: #22C35E;
+    border-radius: 0.125rem;
+}

@@ -46,6 +46,7 @@ const Lesson = () => {
                     <Heading my={2} fontSize={24}>
                         {lesson.getLesson.name}
                     </Heading>
+                    <code>/files/names</code>
                     <Stack spacing={3}>
                         {lesson?.getLesson.content.map((item, index) => {
                             switch (item.type) {
