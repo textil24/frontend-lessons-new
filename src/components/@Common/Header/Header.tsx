@@ -20,9 +20,9 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
 
     return (
         <Box mb={6} position={"fixed"} top={"0"} right={"0"} width={"100%"} zIndex={999} px={"16px"} py={"16px"} bgColor={bgColor} boxShadow='md'>
-            <Grid alignItems={"center"} templateColumns='48px 1fr 48px'>
+            <Grid alignItems={"center"} templateColumns='48px 1fr 32px'>
                 {type === "home" && (
-                    <Box order={"1"}></Box>
+                    <Box order={"1"} height={"40px"}></Box>
                 )}
                 {type === "course" && (
                     <Link to={"/"}>
