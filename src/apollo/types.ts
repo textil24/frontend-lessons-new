@@ -50,6 +50,11 @@ export interface IGetLesson {
                 type: "task"
                 title: string,
                 text: string
+            },
+            {
+                id: string,
+                type: "note"
+                text: string
             }
         ]
         course: {

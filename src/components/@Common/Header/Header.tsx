@@ -1,9 +1,8 @@
-import { ArrowBackIcon, CloseIcon, HamburgerIcon } from "@chakra-ui/icons"
-import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Grid, Heading, Stack, useColorModeValue, useDisclosure } from "@chakra-ui/react"
+import { ArrowBackIcon } from "@chakra-ui/icons"
+import { Box, Button, Flex, Grid, Heading, useColorModeValue } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom";
 import { IGetLesson } from "../../../apollo/types";
-import Loading from "../State/Loading";
 import { Account } from "..";
 import Burger from "./Burger";
 

@@ -1,5 +1,5 @@
 import { QuestionOutlineIcon } from "@chakra-ui/icons"
-import { Heading } from "@chakra-ui/react"
+import { Heading, useColorModeValue } from "@chakra-ui/react"
 import { FC } from "react"
 import { Icon } from '@iconify/react';
 
@@ -13,8 +13,10 @@ interface IMultitaskTitle {
 
 const MultitaskTitle: FC<IMultitaskTitle> = ({ type, flag, isFlagAndStatus, question, title }) => {
 
-    const titleColorMultitask = isFlagAndStatus ? "#22C35E" : "#1A202C"
-    const titleColorTask = flag ? "#22C35E" : "#1A202C"
+    const сolor = useColorModeValue('#1A202C', 'white')
+
+    const titleColorMultitask = isFlagAndStatus ? "#22C35E" : сolor
+    const titleColorTask = flag ? "#22C35E" : сolor
     const titleColor = type === "answerSelector" ? titleColorMultitask : titleColorTask
 
     return (

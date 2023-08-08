@@ -1,7 +1,7 @@
 import { Box, Heading, Stack, Text, Image } from "@chakra-ui/react"
 import { useEffect } from "react"
 import { Breadcrumb, Header, Loading, Error } from "../components/@Common"
-import { ButtonNavigation, Monaco, Multitask, Prism } from "../components/Lesson"
+import { ButtonNavigation, Monaco, Multitask, Note, Prism } from "../components/Lesson"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
 import { GET_LESSON } from "../apollo/lesson"
@@ -14,6 +14,7 @@ enum LessonElementType {
     image = "image",
     answerSelector = "answerSelector",
     task = "task",
+    note = "note",
     prism = "prism",
     monaco = "monaco"
 }
@@ -46,7 +47,6 @@ const Lesson = () => {
                     <Heading my={2} fontSize={24}>
                         {lesson.getLesson.name}
                     </Heading>
-                    <code>/files/names</code>
                     <Stack spacing={3}>
                         {lesson?.getLesson.content.map((item, index) => {
                             switch (item.type) {
@@ -86,6 +86,10 @@ const Lesson = () => {
                                                 text: item.text
                                             }}
                                         />
+                                    )
+                                case LessonElementType.note:
+                                    return (
+                                        <Note text={item.text} />
                                     )
                                 case LessonElementType.prism:
                                     return (
