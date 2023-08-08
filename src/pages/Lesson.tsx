@@ -46,7 +46,7 @@ const Lesson = () => {
                     <Heading my={2} fontSize={24}>
                         {lesson.getLesson.name}
                     </Heading>
-                    <Stack spacing={4}>
+                    <Stack spacing={3}>
                         {lesson?.getLesson.content.map((item, index) => {
                             switch (item.type) {
                                 case LessonElementType.title:
