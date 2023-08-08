@@ -1,6 +1,6 @@
 import { Avatar, AvatarBadge, Box, Button, Text, Menu, MenuButton, MenuDivider, MenuList, Flex, Heading } from "@chakra-ui/react"
-import { SunIcon } from '@chakra-ui/icons'
 import { Icon } from '@iconify/react';
+import { ButtonColorMode } from "./Header";
 
 const Account = () => {
     return (
@@ -32,17 +32,13 @@ const Account = () => {
                         Режимы:
                     </Heading>
                     <Flex justifyContent={"space-between"} alignItems={"center"}>
-                        {/* <MenuItem display={"flex"} justifyContent={"center"} width={"48px"} height={"40px"}> */}
-                        <Button>
-                            <SunIcon />
-                        </Button>
-                        {/* </MenuItem> */}
                         <Button isDisabled={true} fontSize={24}>
                             <Icon icon="openmoji:flag-russia" />
                         </Button>
                         <Button isDisabled={true}>
                             <Icon icon="subway:admin" />
                         </Button>
+                        <ButtonColorMode />
                     </Flex>
                 </Box>
             </MenuList>
