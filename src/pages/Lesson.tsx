@@ -26,7 +26,7 @@ const Lesson = () => {
             getLessonId: params.id ?? ""
         }
     })
-
+    
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [params.id])
@@ -38,16 +38,16 @@ const Lesson = () => {
             {loading && <Loading type="lesson" />}
             {lesson && (
                 <>
-                    <Breadcrumb
+                    {/* <Breadcrumb
                         courseId={lesson.getLesson.course.id}
                         courseName={lesson.getLesson.course.name}
                         lessonId={lesson.getLesson.id}
                         lessonOrder={lesson.getLesson.orderBy}
-                    />
+                    /> */}
                     <Heading my={2} fontSize={24}>
                         {lesson.getLesson.name}
                     </Heading>
-                    <Stack spacing={3}>
+                    <Stack spacing={5}>
                         {lesson?.getLesson.content.map((item, index) => {
                             switch (item.type) {
                                 case LessonElementType.title:
@@ -105,6 +105,8 @@ const Lesson = () => {
                         })}
                     </Stack>
                     <ButtonNavigation
+                        lesson={lesson}
+                        loading={loading}
                         courseId={lesson.getLesson.course.id}
                         prevId={lesson.getLesson.prevLessonId}
                         nextId={lesson.getLesson.nextLessonId} />

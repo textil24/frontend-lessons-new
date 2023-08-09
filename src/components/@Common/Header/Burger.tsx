@@ -1,9 +1,10 @@
-import { ArrowBackIcon, CloseIcon, HamburgerIcon } from "@chakra-ui/icons"
-import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Grid, Heading, Stack, useColorModeValue, useDisclosure } from "@chakra-ui/react"
+import { ArrowBackIcon, SmallCloseIcon } from "@chakra-ui/icons"
+import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, Stack, useDisclosure } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom";
 import { IGetLesson } from "../../../apollo/types";
 import Loading from "../State/Loading";
+import { Icon } from '@iconify/react';
 
 interface IBurger {
     lesson?: IGetLesson
@@ -13,11 +14,13 @@ interface IBurger {
 const Burger: FC<IBurger> = ({ loading, lesson }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+    const currentLesson = lesson?.getLesson.orderBy
+
     return (
-        <Box order={"1"}>
+        <Box>
             <Flex>
-                <Button padding={0} bgColor={"transparent"} onClick={onOpen}>
-                    <HamburgerIcon />
+                <Button onClick={onOpen}>
+                    <Icon icon="lucide:list" />
                 </Button>
             </Flex>
             <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
@@ -26,13 +29,12 @@ const Burger: FC<IBurger> = ({ loading, lesson }) => {
                     <DrawerHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} borderBottomWidth="1px">
                         {loading && <Loading type="burger-heading" />}
                         <Link to={"/courses/" + lesson?.getLesson.course.id}>
-                            <Button leftIcon={<ArrowBackIcon />} onClick={() => onClose()} mr={2} >
-                                {/* {lesson?.getLesson.course.name} */}
-                                Страница курса
+                            <Button onClick={() => onClose()} mr={2} >
+                                <ArrowBackIcon />
                             </Button>
                         </Link>
                         <Button onClick={() => onClose()} >
-                            <CloseIcon />
+                            <SmallCloseIcon />
                         </Button>
                     </DrawerHeader>
                     <DrawerBody onClick={() => onClose()}>
@@ -40,7 +42,7 @@ const Burger: FC<IBurger> = ({ loading, lesson }) => {
                         <Stack spacing={2}>
                             {lesson?.getLesson.course.lessons.map(({ id, name }, index) =>
                                 <Link key={id} onClick={() => onClose()} to={"/lessons/" + id}>
-                                    <Heading fontWeight={"normal"} as='h5' size='sm'>
+                                    <Heading fontWeight={currentLesson === (index + 1) ? "bold" : "normal"} as='h5' size='sm'>
                                         {index + 1}. {name}
                                     </Heading>
                                 </Link>

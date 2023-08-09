@@ -23,7 +23,7 @@ const routes = [
 const App = () => {
   return (
     <Container my={4} maxW='1200'>
-      <Box marginTop={"90px"} paddingBottom={"50px"}>
+      <Box marginTop={"82px"} paddingBottom={"96px"}>
         <Routes>
           {routes.map(({ id, path, element }) =>
             <Route key={id} path={path} element={element} />

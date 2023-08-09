@@ -108,11 +108,11 @@ const Course = () => {
                 {loading && <Loading type="course-about" />}
                 {course && (
                     <>
-                        <Breadcrumb
+                        {/* <Breadcrumb
                             courseId={course?.getCourse.id}
                             courseName={course?.getCourse.name}
                             type="course"
-                        />
+                        /> */}
                         <Heading as='h2' size='xl'>
                             {course?.getCourse.name}
                         </Heading>

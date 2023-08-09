@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-code {
+p > code {
     padding: 0 3px;
     background-color: #EBEEF0;
     font-weight: 600;
