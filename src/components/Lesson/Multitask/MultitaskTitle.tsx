@@ -4,6 +4,12 @@ import { FC } from "react"
 import { Icon } from '@iconify/react';
 
 interface IMultitaskTitle {
+    progress: {
+        tgUserId: number
+        contentId: number
+        lessonId: string
+        isEstimated: boolean
+    } | undefined,
     type: "answerSelector" | "task"
     flag: boolean
     isFlagAndStatus: boolean
@@ -11,13 +17,14 @@ interface IMultitaskTitle {
     title?: string
 }
 
-const MultitaskTitle: FC<IMultitaskTitle> = ({ type, flag, isFlagAndStatus, question, title }) => {
+const MultitaskTitle: FC<IMultitaskTitle> = ({ progress, type, flag, isFlagAndStatus, question, title }) => {
 
     const сolor = useColorModeValue('#1A202C', 'white')
 
+    const titleColorProgress = progress && progress.isEstimated ? "#22C35E" : сolor
     const titleColorMultitask = isFlagAndStatus ? "#22C35E" : сolor
     const titleColorTask = flag ? "#22C35E" : сolor
-    const titleColor = type === "answerSelector" ? titleColorMultitask : titleColorTask
+    const titleColor = progress ? titleColorProgress : type === "answerSelector" ? titleColorMultitask : titleColorTask
 
     return (
         <Heading display={"flex"} alignItems={"center"} color={titleColor} size='sm'>

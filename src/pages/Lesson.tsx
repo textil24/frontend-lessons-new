@@ -1,6 +1,6 @@
 import { Box, Heading, Stack, Text, Image } from "@chakra-ui/react"
 import { useEffect } from "react"
-import { Breadcrumb, Header, Loading, Error } from "../components/@Common"
+import { Header, Loading, Error } from "../components/@Common"
 import { ButtonNavigation, Monaco, Multitask, Note, Prism } from "../components/Lesson"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
@@ -26,7 +26,7 @@ const Lesson = () => {
             getLessonId: params.id ?? ""
         }
     })
-    
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [params.id])
@@ -52,7 +52,7 @@ const Lesson = () => {
                             switch (item.type) {
                                 case LessonElementType.title:
                                     return (
-                                        <Heading mt={4} key={`${index}_${item.id}`} size='md'>
+                                        <Heading key={`${index}_${item.id}`} mt={4} size='md'>
                                             {item.content}
                                         </Heading>
                                     )
@@ -69,8 +69,11 @@ const Lesson = () => {
                                 case LessonElementType.answerSelector:
                                     return (
                                         <Multitask
+                                            key={`${index}_${item.id}`}
+                                            lessonId={lesson?.getLesson.id}
                                             type="answerSelector"
                                             answerSelector={{
+                                                id: item.id,
                                                 question: item.question,
                                                 answers: item.answers,
                                                 corrects: item.corrects
@@ -80,8 +83,11 @@ const Lesson = () => {
                                 case LessonElementType.task:
                                     return (
                                         <Multitask
+                                            key={`${index}_${item.id}`}
+                                            lessonId={lesson?.getLesson.id}
                                             type="task"
                                             task={{
+                                                id: item.id,
                                                 title: item.title,
                                                 text: item.text
                                             }}
@@ -89,7 +95,7 @@ const Lesson = () => {
                                     )
                                 case LessonElementType.note:
                                     return (
-                                        <Note text={item.text} />
+                                        <Note key={`${index}_${item.id}`} text={item.text} />
                                     )
                                 case LessonElementType.prism:
                                     return (

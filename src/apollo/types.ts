@@ -1,3 +1,23 @@
+export interface ICreateProgress {
+    createProgress: [
+        {
+            tgUserId: number
+            contentId: number
+            lessonId: string
+            isEstimated: boolean
+        }
+    ]
+}
+
+export interface IGetProgress {
+    getProgress: {
+        tgUserId: number
+        contentId: number
+        lessonId: string
+        isEstimated: boolean
+    }
+}
+
 export interface IGetCourses {
     getCourses: [
         {
@@ -23,12 +43,6 @@ export interface IGetCourse {
     }
 }
 
-export interface LessonElement {
-    id: string;
-    type: "title" | "text" | "image" | "prism" | "monaco";
-    content: string;
-  }  
-
 export interface IGetLesson {
     getLesson: {
         id: string
@@ -37,22 +51,26 @@ export interface IGetLesson {
         prevLessonId: string
         orderBy: number,
         content: [
-            LessonElement,
             {
-                id: string,
+                id: number;
+                type: "title" | "text" | "image" | "prism" | "monaco";
+                content: string;
+            },
+            {
+                id: number,
                 type: "answerSelector",
                 question: string,
                 answers: string[],
                 corrects: string[]
             },
             {
-                id: string,
+                id: number,
                 type: "task"
                 title: string,
                 text: string
             },
             {
-                id: string,
+                id: number,
                 type: "note"
                 text: string
             }
