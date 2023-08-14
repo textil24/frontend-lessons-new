@@ -27,47 +27,19 @@ const Multitask: FC<IMultitask> = ({ type, lessonId, task, answerSelector }) => 
 
     const { value: selectAnswers, setValue, getCheckboxProps } = useCheckboxGroup()
     const [flag, setFlag] = useBoolean()
+    const [disabled, setDisabled] = useState(false)
     const [errorCount, setErrorCount] = useState(3)
 
-    useEffect(() => {
-        flag && addProgress({
-            variables: {
-                input: {
-                    tgUserId: 666,
-                    lessonId: lessonId,
-                    contentId: type === "answerSelector" ? answerSelector?.id : task?.id
-                }
-            }
-        })
-    }, [flag])
-
-    // console.log({
-    //     tgUserId: 666,
-    //     lessonId: lessonId,
-    //     contentId: type === "answerSelector" ? answerSelector?.id : task?.id
-    // })
-
     const { data } = useQuery<IGetProgress>(GET_PROGRESS, {
+        fetchPolicy: 'network-only',
         variables: {
             tgUserId: 666,
             lessonId: lessonId,
             contentId: type === "answerSelector" ? answerSelector?.id : task?.id
-        }
+        },
     })
-    // console.log(data)
 
-    const [addProgress] = useMutation<ICreateProgress>(ADD_PROGRESS, {
-        // update(cache, { data: { newTodo } }) {
-        //     const { progress } = cache.readQuery({ query: GET_PROGRESS })
-
-        //     cache.writeQuery({
-        //         query: GET_PROGRESS,
-        //         data: {
-
-        //         }
-        //     })
-        // }
-    })
+    const [addProgress, { data: progressMutation }] = useMutation<ICreateProgress>(ADD_PROGRESS)
 
     const getStatusAnswers = () => {
 
@@ -84,31 +56,18 @@ const Multitask: FC<IMultitask> = ({ type, lessonId, task, answerSelector }) => 
         return true;
 
     }
+
     const statusAnswers = getStatusAnswers()
     const isFlagAndStatus = flag && statusAnswers;
     const progress = data?.getProgress
 
-    const borderLeftColorProgress = progress && progress.isEstimated && "#22C35E"
+    const borderLeftColorProgress = progress && progress.isCorrect && "#22C35E"
     const borderLeftColorMultitask = isFlagAndStatus ? "#22C35E" : "#0088CC"
     const borderLeftColorTask = flag ? "#22C35E" : "#0088CC"
     const borderLeft = `2px solid ${progress ? borderLeftColorProgress : type === "answerSelector" ? borderLeftColorMultitask : borderLeftColorTask}`
 
     return (
-        <Stack pl={4} borderLeft={borderLeft} py={2} spacing={2} direction='column' style={progress ? { pointerEvents: "none" } : {}}>
-            <Heading>{String(progress ? progress.isEstimated : false)}</Heading>
-            <Button onClick={() => addProgress({
-                variables: {
-                    input: {
-                        tgUserId: 666,
-                        lessonId: lessonId,
-                        isEstimated: true,
-                        contentId: type === "answerSelector" ? answerSelector?.id : task?.id
-                    }
-                }
-            })}>
-                Отправить данные
-            </Button>
-
+        <Stack pl={4} borderLeft={borderLeft} py={2} spacing={2} direction='column' style={disabled ? { pointerEvents: "none" } : progress ? { pointerEvents: "none" } : {}}>
             <MultitaskTitle
                 progress={progress}
 
@@ -120,11 +79,13 @@ const Multitask: FC<IMultitask> = ({ type, lessonId, task, answerSelector }) => 
                 title={task?.title}
             />
             <MultitaskAnswers
+                setDisabled={setDisabled}
                 addProgress={addProgress}
                 lessonId={lessonId}
                 task={task}
                 answerSelector={answerSelector}
                 progress={progress}
+                progressMutation={progressMutation}
 
                 type={type}
                 flag={flag}
@@ -142,6 +103,11 @@ const Multitask: FC<IMultitask> = ({ type, lessonId, task, answerSelector }) => 
                 answers={answerSelector?.answers}
             />
             <MultitaskControls
+            setDisabled={setDisabled}
+                addProgress={addProgress}
+                lessonId={lessonId}
+                task={task}
+                answerSelector={answerSelector}
                 progress={progress}
 
                 type={type}

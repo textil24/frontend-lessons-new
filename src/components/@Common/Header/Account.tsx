@@ -1,6 +1,6 @@
 import { Avatar, AvatarBadge, Box, Button, Text, Menu, MenuButton, MenuDivider, MenuList, Flex, Heading } from "@chakra-ui/react"
 import { Icon } from '@iconify/react';
-import { ButtonColorMode } from "./Header";
+import { ButtonColorMode } from ".";
 import { useState } from "react";
 
 const Account = () => {
@@ -10,7 +10,7 @@ const Account = () => {
     return (
         <Menu>
             <MenuButton>
-                <Avatar cursor={"pointer"} name={userTelegram ? userTelegram.first_name : "Anon"}  size='sm'>
+                <Avatar cursor={"pointer"} name={userTelegram && userTelegram.first_name}  size='sm'>
                     <AvatarBadge boxSize='1.1em' bg='green.500' />
                 </Avatar>
             </MenuButton>
@@ -20,13 +20,13 @@ const Account = () => {
                         Профиль:
                     </Heading>
                     <Flex alignItems={"center"}>
-                        <Avatar cursor={"pointer"} name={userTelegram ? userTelegram.first_name : "Anon"} size='sm' mr={2} />
+                        <Avatar cursor={"pointer"} name={userTelegram && userTelegram.first_name} size='sm' mr={2} />
                         <Box>
                             <Flex fontWeight={"500"}>
-                                <Text mr={1}>{userTelegram ? userTelegram.first_name  : "Anon"}</Text>
-                                <Text>{userTelegram ? userTelegram.last_name : "Anon"}</Text>
+                                <Text mr={1}>{userTelegram && userTelegram.first_name }</Text>
+                                <Text>{userTelegram && userTelegram.last_name}</Text>
                             </Flex>
-                            <Text color={"gray.500"}>{userTelegram ? userTelegram.username : "@Anon"}</Text>
+                            <Text color={"gray.500"}>{userTelegram && userTelegram.username}</Text>
                         </Box>
                     </Flex>
                 </Box>

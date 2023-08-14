@@ -8,7 +8,7 @@ interface IMultitaskTitle {
         tgUserId: number
         contentId: number
         lessonId: string
-        isEstimated: boolean
+        isCorrect: boolean
     } | undefined,
     type: "answerSelector" | "task"
     flag: boolean
@@ -21,7 +21,7 @@ const MultitaskTitle: FC<IMultitaskTitle> = ({ progress, type, flag, isFlagAndSt
 
     const сolor = useColorModeValue('#1A202C', 'white')
 
-    const titleColorProgress = progress && progress.isEstimated ? "#22C35E" : сolor
+    const titleColorProgress = progress && progress.isCorrect ? "#22C35E" : сolor
     const titleColorMultitask = isFlagAndStatus ? "#22C35E" : сolor
     const titleColorTask = flag ? "#22C35E" : сolor
     const titleColor = progress ? titleColorProgress : type === "answerSelector" ? titleColorMultitask : titleColorTask

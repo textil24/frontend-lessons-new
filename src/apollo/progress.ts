@@ -7,7 +7,7 @@ export const GET_PROGRESS = gql`
             tgUserId
             contentId
             lessonId
-            isEstimated
+            isCorrect
         }
     }
 `
@@ -19,7 +19,7 @@ export const ADD_PROGRESS = gql`
             tgUserId
             contentId
             lessonId
-            isEstimated
+            isCorrect
         }
     }
 `

@@ -1,8 +1,11 @@
 import { Box, Checkbox, Stack } from "@chakra-ui/react"
 import { FC } from "react"
+import { ICreateProgress } from "../../../apollo/types"
 
 interface IMultitaskAnswers {
+    setDisabled: (args: boolean) => void
     addProgress: (args: any) => void
+    progressMutation: ICreateProgress | undefined | null
     lessonId: string | undefined
     task?: {
         id: number
@@ -20,7 +23,7 @@ interface IMultitaskAnswers {
         tgUserId: number
         contentId: number
         lessonId: string
-        isEstimated: boolean
+        isCorrect: boolean
     } | undefined
 
     // type: "answerSelector" | "task"
@@ -40,9 +43,9 @@ interface IMultitaskAnswers {
     answers?: string[]
 }
 
-const MultitaskAnswers: FC<IMultitaskAnswers> = ({ addProgress, lessonId, task, answerSelector, progress, statusAnswers, text, flag, type, isFlagAndStatus, off, toggle, answers, errorCount, setErrorCount, getCheckboxProps }) => {
+const MultitaskAnswers: FC<IMultitaskAnswers> = ({ setDisabled, addProgress, progressMutation, lessonId, task, answerSelector, progress, statusAnswers, text, flag, type, isFlagAndStatus, off, toggle, answers, errorCount, setErrorCount, getCheckboxProps }) => {
 
-    const checkboxColorProgress = progress && progress.isEstimated ? "whatsapp" : "telegram"
+    const checkboxColorProgress = progress && progress.isCorrect ? "whatsapp" : "telegram"
     const checkboxColor = progress ? checkboxColorProgress : isFlagAndStatus ? "whatsapp" : "telegram"
 
     return (
@@ -62,16 +65,17 @@ const MultitaskAnswers: FC<IMultitaskAnswers> = ({ addProgress, lessonId, task, 
             ) : (
                 <Box>
                     <Checkbox
-                        isChecked={progress && progress.isEstimated ? true : flag}
+                        isChecked={progress && progress.isCorrect ? true : flag}
                         onChange={() => {
+                            setDisabled(true)
                             toggle(),
-                            flag && addProgress({
+                            !(progressMutation?.createProgress.contentId === task?.id) && !flag && addProgress({
                                 variables: {
                                     input: {
                                         tgUserId: 666,
                                         lessonId: lessonId,
-                                        isEstimated: true,
-                                        contentId: type === "answerSelector" ? answerSelector?.id : task?.id
+                                        contentId: task?.id,
+                                        isCorrect: true
                                     }
                                 }
                             })

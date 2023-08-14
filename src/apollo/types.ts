@@ -1,12 +1,10 @@
 export interface ICreateProgress {
-    createProgress: [
-        {
-            tgUserId: number
-            contentId: number
-            lessonId: string
-            isEstimated: boolean
-        }
-    ]
+    createProgress: {
+        tgUserId: number
+        contentId: number
+        lessonId: string
+        isEstimated: boolean
+    }
 }
 
 export interface IGetProgress {
@@ -14,7 +12,7 @@ export interface IGetProgress {
         tgUserId: number
         contentId: number
         lessonId: string
-        isEstimated: boolean
+        isCorrect: boolean
     }
 }
 

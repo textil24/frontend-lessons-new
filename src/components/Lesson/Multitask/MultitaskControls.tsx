@@ -1,16 +1,27 @@
 import { Box, Button, Stack } from "@chakra-ui/react"
 import { FC, useEffect } from "react"
 import Alert from "./Alert"
-import { useMutation } from "@apollo/client"
-import { ICreateProgress } from "../../../apollo/types"
-import { ADD_PROGRESS } from "../../../apollo/progress"
-
 interface IMultitaskControls {
+    setDisabled: (args: boolean) => void
+    addProgress: (args: any) => void
+    lessonId: string | undefined
+    task?: {
+        id: number
+        title: string,
+        text: string
+    },
+    answerSelector?: {
+        id: number
+        question: string
+        answers: string[]
+        corrects: string[]
+    }
+
     progress: {
         tgUserId: number
         contentId: number
         lessonId: string
-        isEstimated: boolean
+        isCorrect: boolean
     } | undefined
 
     type: "answerSelector" | "task"
@@ -25,14 +36,14 @@ interface IMultitaskControls {
     corrects?: string[]
 }
 
-const MultitaskControls: FC<IMultitaskControls> = ({ progress, type, flag, errorCount, setErrorCount, statusAnswers, selectAnswers, on, setValue, corrects }) => {
+const MultitaskControls: FC<IMultitaskControls> = ({ setDisabled, addProgress, lessonId, task, answerSelector, progress, type, flag, errorCount, setErrorCount, statusAnswers, selectAnswers, on, setValue, corrects }) => {
 
     useEffect(() => {
-        progress && progress.isEstimated && setValue(corrects ?? [])
+        progress && progress.isCorrect && setValue(corrects ?? [])
     }, [progress])
 
     const isEmptySelectAnswers = selectAnswers.length === 0
-    const statusAnswer = progress && progress.isEstimated ? <Alert status="success" /> : flag ? (statusAnswers ? <Alert status="success" /> : <Alert status="error" errorCount={errorCount} />) : <></>
+    const statusAnswer = progress && progress.isCorrect ? <Alert status="success" /> : flag ? (statusAnswers ? <Alert status="success" /> : <Alert status="error" errorCount={errorCount} />) : <></>
 
     if (type === "task") {
         return <></>
@@ -41,13 +52,40 @@ const MultitaskControls: FC<IMultitaskControls> = ({ progress, type, flag, error
     return (
         <Box>
             <Stack spacing={2} direction='row'>
-                 {progress && progress.isEstimated ? <></> : !(flag && statusAnswers) && (
+                {progress && progress.isCorrect ? <></> : !(flag && statusAnswers) && (
                     <>
-                        <Button onClick={() => { on(), errorCount && !statusAnswers && setErrorCount(errorCount - 1) }} isDisabled={isEmptySelectAnswers}>
+                        <Button onClick={() => {
+                            on(),
+                                errorCount && !statusAnswers && setErrorCount(errorCount - 1)
+                            statusAnswers && addProgress({
+                                variables: {
+                                    input: {
+                                        tgUserId: 666,
+                                        lessonId: lessonId,
+                                        contentId: type === "answerSelector" ? answerSelector?.id : task?.id,
+                                        isCorrect: true
+                                    }
+                                }
+                            })
+                            statusAnswers && setDisabled(true)
+                        }} isDisabled={isEmptySelectAnswers}>
                             Проверить
                         </Button>
                         {!errorCount && (
-                            <Button onClick={() => setValue(corrects ?? [])} colorScheme="whatsapp">
+                            <Button onClick={() => {
+                                setValue(corrects ?? []),
+                                    addProgress({
+                                        variables: {
+                                            input: {
+                                                tgUserId: 666,
+                                                lessonId: lessonId,
+                                                contentId: type === "answerSelector" ? answerSelector?.id : task?.id,
+                                                isCorrect: true
+                                            }
+                                        }
+                                    }),
+                                    setDisabled(true)
+                            }} colorScheme="whatsapp">
                                 Показать ответ
                             </Button>
                         )}

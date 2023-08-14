@@ -26,14 +26,14 @@ const Burger: FC<IBurger> = ({ loading, lesson }) => {
             <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} borderBottomWidth="1px">
+                    <DrawerHeader display={"flex"} justifyContent={"flex-end"} alignItems={"center"} borderBottomWidth="1px">
                         {loading && <Loading type="burger-heading" />}
-                        <Link to={"/courses/" + lesson?.getLesson.course.id}>
+                        {/* <Link to={"/courses/" + lesson?.getLesson.course.id}>
                             <Button onClick={() => onClose()} mr={2} >
                                 <ArrowBackIcon />
                             </Button>
-                        </Link>
-                        <Button onClick={() => onClose()} >
+                        </Link> */}
+                        <Button onClick={() => onClose()} bgColor={"transparent"} >
                             <SmallCloseIcon />
                         </Button>
                     </DrawerHeader>

@@ -4,7 +4,6 @@ import { FC } from "react"
 import { Link } from "react-router-dom";
 import { IGetLesson } from "../../../apollo/types";
 import { Account } from "..";
-import Burger from "./Burger";
 
 interface IHeader {
     lesson?: IGetLesson
@@ -22,19 +21,10 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
                 {type === "home" && (
                     <Box order={"1"} height={"40px"}></Box>
                 )}
-                {type === "course" && (
-                    <Link to={"/"}>
+                {!(type === "home") && (
+                    <Link to={(type === "lesson") ? "/courses/" + lesson?.getLesson.course.id : "/"}>
                         <Box order={"1"}>
-                            <Button bgColor={"transparent"}>
-                                <ArrowBackIcon />
-                            </Button>
-                        </Box>
-                    </Link>
-                )}
-                {type === "lesson" && (
-                    <Link to={"/courses/" + lesson?.getLesson.course.id}>
-                        <Box order={"1"}>
-                            <Button bgColor={"transparent"}>
+                            <Button display={"flex"} justifyContent={"flex-start"} padding={0} bgColor={"transparent"}>
                                 <ArrowBackIcon />
                             </Button>
                         </Box>

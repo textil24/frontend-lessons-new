@@ -15,12 +15,12 @@ interface IButtonNavigation {
 
 const ButtonNavigation: FC<IButtonNavigation> = ({ lesson, loading, courseId, prevId, nextId }) => {
     const bgColor = useColorModeValue('white', '#1A202C')
-    
+
     const currentLesson = lesson?.getLesson.orderBy
     const countLessons = lesson?.getLesson.course.lessons.length
 
     return (
-        <Grid p={2} position={"fixed"} bottom={0} left={0} width={"100%"} templateColumns='48px 1fr 48px 48px' gap={2} mt={6} alignItems={"center"} bgColor={bgColor} boxShadow={"0 -4px 6px -1px rgba(0, 0, 0, 0.1)"}>
+        <Grid paddingRight={"16px"} paddingLeft={"16px"} py={3} position={"fixed"} bottom={0} left={0} width={"100%"} templateColumns='48px 1fr 48px 48px' gap={2} mt={6} alignItems={"center"} bgColor={bgColor} boxShadow={"0 -4px 6px -1px rgba(0, 0, 0, 0.1)"}>
             <Box order={1}>
                 <Burger lesson={lesson} loading={loading} />
             </Box>
