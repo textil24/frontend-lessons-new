@@ -113,10 +113,10 @@ const Course = () => {
                             courseName={course?.getCourse.name}
                             type="course"
                         /> */}
-                        <Heading as='h2' size='xl'>
+                        <Heading as='h2' size='md'>
                             {course?.getCourse.name}
                         </Heading>
-                        <Text fontSize='lg'>
+                        <Text fontSize='md'>
                             {course?.getCourse.description}
                         </Text>
                         <Link to={"/lessons/" + course?.getCourse.lessons[0].id}>
