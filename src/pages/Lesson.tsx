@@ -27,6 +27,15 @@ const Lesson = () => {
         }
     })
 
+    const lessonId = lesson?.getLesson.id
+
+    function getMultitaskIsCorrect(lessonId: string | undefined, contentId: number | undefined): boolean {
+        return lesson?.getLesson.userProgress.results.find(item => (item.lessonId === lessonId && item.contentId === contentId))?.isCorrect ? true : false
+    }
+
+    // console.log(lesson?.getLesson.userProgress.results.find(item => lessonId === item.lessonId)?.isCorrect)
+    // console.log(lesson?.getLesson.course.lessons.find(item => lessonId === item.id))
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [params.id])
@@ -70,6 +79,8 @@ const Lesson = () => {
                                     return (
                                         <Multitask
                                             key={`${index}_${item.id}`}
+                                            lesson={lesson}
+                                            getMultitaskIsCorrect={getMultitaskIsCorrect}
                                             lessonId={lesson?.getLesson.id}
                                             type="answerSelector"
                                             answerSelector={{
@@ -84,6 +95,8 @@ const Lesson = () => {
                                     return (
                                         <Multitask
                                             key={`${index}_${item.id}`}
+                                            lesson={lesson}
+                                            getMultitaskIsCorrect={getMultitaskIsCorrect}
                                             lessonId={lesson?.getLesson.id}
                                             type="task"
                                             task={{

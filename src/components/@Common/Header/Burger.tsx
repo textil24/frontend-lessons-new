@@ -1,5 +1,5 @@
 import { ArrowBackIcon, SmallCloseIcon } from "@chakra-ui/icons"
-import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Heading, Stack, useDisclosure } from "@chakra-ui/react"
+import { Text, Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, Grid, Heading, Stack, useDisclosure } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom";
 import { IGetLesson } from "../../../apollo/types";
@@ -40,12 +40,17 @@ const Burger: FC<IBurger> = ({ loading, lesson }) => {
                     <DrawerBody onClick={() => onClose()}>
                         {loading && <Loading type="burger-items" />}
                         <Stack spacing={2}>
-                            {lesson?.getLesson.course.lessons.map(({ id, name }, index) =>
-                                <Link key={id} onClick={() => onClose()} to={"/lessons/" + id}>
-                                    <Heading fontWeight={currentLesson === (index + 1) ? "bold" : "normal"} as='h5' size='sm'>
-                                        {index + 1}. {name}
-                                    </Heading>
-                                </Link>
+                            {lesson?.getLesson.course.lessons.map(({ id, name, userProgress }, index) =>
+                                <Grid key={id} templateColumns="1fr auto" gap={1}>
+                                    <Link onClick={() => onClose()} to={"/lessons/" + id}>
+                                        <Heading fontWeight={currentLesson === (index + 1) ? "bold" : "normal"} as='h5' size='sm'>
+                                            {index + 1}. {name}
+                                        </Heading>
+                                    </Link>
+                                    <Text>
+                                        {userProgress.contentTotalDonePercent ? `${userProgress.contentTotalDonePercent}%` : ""}
+                                    </Text>
+                                </Grid>
                             )}
                         </Stack>
                     </DrawerBody>

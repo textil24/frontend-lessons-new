@@ -5,9 +5,13 @@ import MultitaskAnswers from "./MultitaskAnswers"
 import MultitaskTitle from "./MultitaskTitle"
 import { useMutation, useQuery } from "@apollo/client"
 import { ADD_PROGRESS, GET_PROGRESS } from "../../../apollo/progress"
-import { ICreateProgress, IGetProgress } from "../../../apollo/types"
+import { ICreateProgress, IGetLesson, IGetProgress } from "../../../apollo/types"
+import client from "../../../apollo/client"
+import { GET_LESSON } from "../../../apollo/lesson"
 
 interface IMultitask {
+    lesson: IGetLesson
+    getMultitaskIsCorrect: (lessonId: string | undefined, contentId: number | undefined) => boolean
     type: "answerSelector" | "task"
     lessonId: string | undefined
     task?: {
@@ -23,12 +27,13 @@ interface IMultitask {
     }
 }
 
-const Multitask: FC<IMultitask> = ({ type, lessonId, task, answerSelector }) => {
+const Multitask: FC<IMultitask> = ({ lesson, getMultitaskIsCorrect, type, lessonId, task, answerSelector }) => {
 
     const { value: selectAnswers, setValue, getCheckboxProps } = useCheckboxGroup()
     const [flag, setFlag] = useBoolean()
     const [disabled, setDisabled] = useState(false)
     const [errorCount, setErrorCount] = useState(3)
+    const contentId = (type === "answerSelector") ? answerSelector?.id : task?.id
 
     const { data } = useQuery<IGetProgress>(GET_PROGRESS, {
         fetchPolicy: 'network-only',
@@ -66,8 +71,43 @@ const Multitask: FC<IMultitask> = ({ type, lessonId, task, answerSelector }) => 
     const borderLeftColorTask = flag ? "#22C35E" : "#0088CC"
     const borderLeft = `2px solid ${progress ? borderLeftColorProgress : type === "answerSelector" ? borderLeftColorMultitask : borderLeftColorTask}`
 
+    const currentContentTotalIsEstimated = lesson.getLesson.content.filter(item => item.isEstimated).length
+    const currentContentTotalDone = lesson.getLesson.userProgress.contentTotalDone
+    // console.log(getMultitaskIsCorrect(lessonId, contentId))
+    console.log(lesson)
+
     return (
         <Stack pl={4} borderLeft={borderLeft} py={2} spacing={2} direction='column' style={disabled ? { pointerEvents: "none" } : progress ? { pointerEvents: "none" } : {}}>
+            <Heading>
+                {String(getMultitaskIsCorrect(lessonId, contentId))}
+            </Heading>
+            <Button onClick={() => {
+                client.writeQuery({
+                    query: GET_LESSON,
+                    data: {
+                        getLesson: {
+                            ...lesson.getLesson,
+                            contentTotalIsEstimated: currentContentTotalIsEstimated,
+                            userProgress: {
+                                ...lesson.getLesson.userProgress,
+                                contentTotalDone: currentContentTotalDone + 1,
+                                contentTotalDonePercent: Math.floor((currentContentTotalDone + 1)/currentContentTotalIsEstimated * 100),
+                                results: [
+                                    ...lesson.getLesson.userProgress.results,
+                                    {
+                                        tgUserId: "666",
+                                        contentId: contentId,
+                                        lessonId: lessonId,
+                                        isCorrect: true
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                });
+            }}>
+                Submit
+            </Button>
             <MultitaskTitle
                 progress={progress}
 
@@ -103,7 +143,7 @@ const Multitask: FC<IMultitask> = ({ type, lessonId, task, answerSelector }) => 
                 answers={answerSelector?.answers}
             />
             <MultitaskControls
-            setDisabled={setDisabled}
+                setDisabled={setDisabled}
                 addProgress={addProgress}
                 lessonId={lessonId}
                 task={task}

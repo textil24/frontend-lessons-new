@@ -47,12 +47,14 @@ export interface IGetLesson {
         name: string
         nextLessonId: string
         prevLessonId: string
-        orderBy: number,
+        orderBy: number
+        contentTotalIsEstimated: number
         content: [
             {
                 id: number;
                 type: "title" | "text" | "image" | "prism" | "monaco";
                 content: string;
+                isEstimated: false
             },
             {
                 id: number,
@@ -60,17 +62,20 @@ export interface IGetLesson {
                 question: string,
                 answers: string[],
                 corrects: string[]
+                isEstimated: true
             },
             {
                 id: number,
                 type: "task"
                 title: string,
                 text: string
+                isEstimated: true
             },
             {
                 id: number,
                 type: "note"
                 text: string
+                isEstimated: false
             }
         ]
         course: {
@@ -80,8 +85,30 @@ export interface IGetLesson {
                 {
                     id: string
                     name: string
+                    contentTotal: number,
+                    contentTotalIsEstimated: number,
+                    userProgress: {
+                        contentTotalDone: number
+                        contentTotalDonePercent: number
+                        results: {
+                            tgUserId: number
+                            contentId: number
+                            lessonId: string
+                            isCorrect: boolean
+                          }
+                    }
                 }
             ]
+        }
+        userProgress: {
+            contentTotalDone: number
+            contentTotalDonePercent: number
+            results: [{
+                tgUserId: number
+                contentId: number
+                lessonId: string
+                isCorrect: boolean
+            }]
         }
     }
 }

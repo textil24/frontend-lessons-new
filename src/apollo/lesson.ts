@@ -9,12 +9,35 @@ export const GET_LESSON = gql`
             orderBy
             nextLessonId
             prevLessonId
+            contentTotalIsEstimated
             course {
                 id
                 name
                 lessons {
                     name
                     id
+                    contentTotal
+                    contentTotalIsEstimated
+                    userProgress {
+                        contentTotalDone
+                        contentTotalDonePercent
+                        results {
+                            tgUserId
+                            contentId
+                            lessonId
+                            isCorrect
+                        }
+                    }
+                }
+            }
+            userProgress {
+                contentTotalDone
+                contentTotalDonePercent
+                results {
+                    tgUserId
+                    contentId
+                    lessonId
+                    isCorrect
                 }
             }
         }
