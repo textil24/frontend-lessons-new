@@ -1,6 +1,7 @@
-import { Card as CardItem, CardBody, Heading, Stack, Text, Badge } from "@chakra-ui/react"
+import { Card as CardItem, CardBody, Heading, Stack, Text, Badge, Flex } from "@chakra-ui/react"
 import { FC } from "react"
 import { Link } from "react-router-dom"
+import { Progress } from "."
 
 interface ICard {
     id: string
@@ -21,9 +22,10 @@ const Card: FC<ICard> = ({ id, name, preview }) => {
                         <Text>
                             {preview}
                         </Text>
-                        <Stack direction='row'>
+                        <Flex justifyContent={"space-between"} alignItems={"center"}>
                             <Badge>Курс</Badge>
-                        </Stack>
+                            <Progress percent={100} />
+                        </Flex>
                     </Stack>
                 </CardBody>
             </CardItem>
