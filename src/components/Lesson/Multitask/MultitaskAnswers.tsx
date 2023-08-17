@@ -5,6 +5,7 @@ import { ICreateProgress } from "../../../apollo/types"
 interface IMultitaskAnswers {
     setDisabled: (args: boolean) => void
     addProgress: (args: any) => void
+    getLessonWriteQuery: () => void
     progressMutation: ICreateProgress | undefined | null
     lessonId: string | undefined
     task?: {
@@ -19,12 +20,7 @@ interface IMultitaskAnswers {
         corrects: string[]
     }
 
-    progress: {
-        tgUserId: number
-        contentId: number
-        lessonId: string
-        isCorrect: boolean
-    } | undefined
+    multitaskIsCorrect: boolean
 
     // type: "answerSelector" | "task"
     type: any
@@ -43,10 +39,10 @@ interface IMultitaskAnswers {
     answers?: string[]
 }
 
-const MultitaskAnswers: FC<IMultitaskAnswers> = ({ setDisabled, addProgress, progressMutation, lessonId, task, answerSelector, progress, statusAnswers, text, flag, type, isFlagAndStatus, off, toggle, answers, errorCount, setErrorCount, getCheckboxProps }) => {
+const MultitaskAnswers: FC<IMultitaskAnswers> = ({ setDisabled, addProgress, getLessonWriteQuery, progressMutation, lessonId, task, answerSelector, multitaskIsCorrect, statusAnswers, text, flag, type, isFlagAndStatus, off, toggle, answers, errorCount, setErrorCount, getCheckboxProps }) => {
 
-    const checkboxColorProgress = progress && progress.isCorrect ? "whatsapp" : "telegram"
-    const checkboxColor = progress ? checkboxColorProgress : isFlagAndStatus ? "whatsapp" : "telegram"
+    const checkboxColorProgress = multitaskIsCorrect ? "whatsapp" : "telegram"
+    const checkboxColor = multitaskIsCorrect ? checkboxColorProgress : isFlagAndStatus ? "whatsapp" : "telegram"
 
     return (
         <Stack spacing={2} direction='column'>
@@ -65,23 +61,14 @@ const MultitaskAnswers: FC<IMultitaskAnswers> = ({ setDisabled, addProgress, pro
             ) : (
                 <Box>
                     <Checkbox
-                        isChecked={progress && progress.isCorrect ? true : flag}
+                        isChecked={multitaskIsCorrect ? true : flag}
                         onChange={() => {
                             setDisabled(true)
                             toggle(),
-                            !(progressMutation?.createProgress.contentId === task?.id) && !flag && addProgress({
-                                variables: {
-                                    input: {
-                                        tgUserId: 666,
-                                        lessonId: lessonId,
-                                        contentId: task?.id,
-                                        isCorrect: true
-                                    }
-                                }
-                            })
+                            !(progressMutation?.createProgress.contentId === task?.id) && !flag && getLessonWriteQuery()
                         }}
                         colorScheme="whatsapp"
-                        textDecoration={progress ? "line-through" : flag ? "line-through" : "none"}
+                        textDecoration={multitaskIsCorrect ? "line-through" : flag ? "line-through" : "none"}
                     >
                         {text}
                     </Checkbox>

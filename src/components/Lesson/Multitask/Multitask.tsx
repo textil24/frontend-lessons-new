@@ -35,15 +35,6 @@ const Multitask: FC<IMultitask> = ({ lesson, getMultitaskIsCorrect, type, lesson
     const [errorCount, setErrorCount] = useState(3)
     const contentId = (type === "answerSelector") ? answerSelector?.id : task?.id
 
-    const { data } = useQuery<IGetProgress>(GET_PROGRESS, {
-        fetchPolicy: 'network-only',
-        variables: {
-            tgUserId: 666,
-            lessonId: lessonId,
-            contentId: type === "answerSelector" ? answerSelector?.id : task?.id
-        },
-    })
-
     const [addProgress, { data: progressMutation }] = useMutation<ICreateProgress>(ADD_PROGRESS)
 
     const getStatusAnswers = () => {
@@ -63,53 +54,60 @@ const Multitask: FC<IMultitask> = ({ lesson, getMultitaskIsCorrect, type, lesson
     }
 
     const statusAnswers = getStatusAnswers()
+    const multitaskIsCorrect = getMultitaskIsCorrect(lessonId, contentId)
     const isFlagAndStatus = flag && statusAnswers;
-    const progress = data?.getProgress
 
-    const borderLeftColorProgress = progress && progress.isCorrect && "#22C35E"
+    const borderLeftColorProgress = multitaskIsCorrect && "#22C35E"
     const borderLeftColorMultitask = isFlagAndStatus ? "#22C35E" : "#0088CC"
     const borderLeftColorTask = flag ? "#22C35E" : "#0088CC"
-    const borderLeft = `2px solid ${progress ? borderLeftColorProgress : type === "answerSelector" ? borderLeftColorMultitask : borderLeftColorTask}`
+    const borderLeft = `2px solid ${multitaskIsCorrect ? borderLeftColorProgress : type === "answerSelector" ? borderLeftColorMultitask : borderLeftColorTask}`
 
     const currentContentTotalIsEstimated = lesson.getLesson.content.filter(item => item.isEstimated).length
     const currentContentTotalDone = lesson.getLesson.userProgress.contentTotalDone
-    // console.log(getMultitaskIsCorrect(lessonId, contentId))
     console.log(lesson)
 
-    return (
-        <Stack pl={4} borderLeft={borderLeft} py={2} spacing={2} direction='column' style={disabled ? { pointerEvents: "none" } : progress ? { pointerEvents: "none" } : {}}>
-            <Heading>
-                {String(getMultitaskIsCorrect(lessonId, contentId))}
-            </Heading>
-            <Button onClick={() => {
-                client.writeQuery({
-                    query: GET_LESSON,
-                    data: {
-                        getLesson: {
-                            ...lesson.getLesson,
-                            contentTotalIsEstimated: currentContentTotalIsEstimated,
-                            userProgress: {
-                                ...lesson.getLesson.userProgress,
-                                contentTotalDone: currentContentTotalDone + 1,
-                                contentTotalDonePercent: Math.floor((currentContentTotalDone + 1)/currentContentTotalIsEstimated * 100),
-                                results: [
-                                    ...lesson.getLesson.userProgress.results,
-                                    {
-                                        tgUserId: "666",
-                                        contentId: contentId,
-                                        lessonId: lessonId,
-                                        isCorrect: true
-                                    }
-                                ]
-                            }
+    function getLessonWriteQuery() {
+        return (
+            client.writeQuery({
+                query: GET_LESSON,
+                data: {
+                    getLesson: {
+                        ...lesson.getLesson,
+                        contentTotalIsEstimated: currentContentTotalIsEstimated,
+                        userProgress: {
+                            ...lesson.getLesson.userProgress,
+                            contentTotalDone: currentContentTotalDone + 1,
+                            contentTotalDonePercent: Math.floor((currentContentTotalDone + 1) / currentContentTotalIsEstimated * 100),
+                            results: [
+                                ...lesson.getLesson.userProgress.results,
+                                {
+                                    tgUserId: 666,
+                                    contentId: contentId,
+                                    lessonId: lessonId,
+                                    isCorrect: true
+                                }
+                            ]
                         }
                     }
-                });
-            }}>
-                Submit
-            </Button>
+                }
+            }),
+            addProgress({
+                variables: {
+                    input: {
+                        tgUserId: 666,
+                        contentId: contentId,
+                        lessonId: lessonId,
+                        isCorrect: true
+                    }
+                }
+            })
+        )
+    }
+
+    return (
+        <Stack pl={4} borderLeft={borderLeft} py={2} spacing={2} direction='column' style={disabled ? { pointerEvents: "none" } : multitaskIsCorrect ? { pointerEvents: "none" } : {}}>
             <MultitaskTitle
-                progress={progress}
+                multitaskIsCorrect={multitaskIsCorrect}
 
                 type={type}
                 flag={flag}
@@ -121,10 +119,12 @@ const Multitask: FC<IMultitask> = ({ lesson, getMultitaskIsCorrect, type, lesson
             <MultitaskAnswers
                 setDisabled={setDisabled}
                 addProgress={addProgress}
+                getLessonWriteQuery={getLessonWriteQuery}
                 lessonId={lessonId}
                 task={task}
                 answerSelector={answerSelector}
-                progress={progress}
+
+                multitaskIsCorrect={multitaskIsCorrect}
                 progressMutation={progressMutation}
 
                 type={type}
@@ -148,7 +148,9 @@ const Multitask: FC<IMultitask> = ({ lesson, getMultitaskIsCorrect, type, lesson
                 lessonId={lessonId}
                 task={task}
                 answerSelector={answerSelector}
-                progress={progress}
+
+                multitaskIsCorrect={multitaskIsCorrect}
+                getLessonWriteQuery={getLessonWriteQuery}
 
                 type={type}
                 flag={flag}

@@ -33,9 +33,6 @@ const Lesson = () => {
         return lesson?.getLesson.userProgress.results.find(item => (item.lessonId === lessonId && item.contentId === contentId))?.isCorrect ? true : false
     }
 
-    // console.log(lesson?.getLesson.userProgress.results.find(item => lessonId === item.lessonId)?.isCorrect)
-    // console.log(lesson?.getLesson.course.lessons.find(item => lessonId === item.id))
-
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [params.id])
@@ -47,12 +44,6 @@ const Lesson = () => {
             {loading && <Loading type="lesson" />}
             {lesson && (
                 <>
-                    {/* <Breadcrumb
-                        courseId={lesson.getLesson.course.id}
-                        courseName={lesson.getLesson.course.name}
-                        lessonId={lesson.getLesson.id}
-                        lessonOrder={lesson.getLesson.orderBy}
-                    /> */}
                     <Heading my={2} fontSize={24}>
                         {lesson.getLesson.name}
                     </Heading>
