@@ -23,6 +23,9 @@ export interface IGetCourses {
             name: string
             category: string
             preview: string
+            contentTotalIsEstimatedCount: number
+            contentTotalDoneCount: number
+            progressCourse: number
         }
     ]
 }

@@ -7,6 +7,9 @@ export const GET_COURSES = gql`
             name
             category
             preview
+            contentTotalIsEstimatedCount
+            contentTotalDoneCount
+            progressCourse
         }
     }
 `

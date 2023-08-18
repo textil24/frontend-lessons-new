@@ -8,6 +8,7 @@ import { ADD_PROGRESS, GET_PROGRESS } from "../../../apollo/progress"
 import { ICreateProgress, IGetLesson, IGetProgress } from "../../../apollo/types"
 import client from "../../../apollo/client"
 import { GET_LESSON } from "../../../apollo/lesson"
+import { GET_COURSES } from "../../../apollo/home"
 
 interface IMultitask {
     lesson: IGetLesson
@@ -64,10 +65,22 @@ const Multitask: FC<IMultitask> = ({ lesson, getMultitaskIsCorrect, type, lesson
 
     const currentContentTotalIsEstimated = lesson.getLesson.content.filter(item => item.isEstimated).length
     const currentContentTotalDone = lesson.getLesson.userProgress.contentTotalDone
-    console.log(lesson)
+
+    console.log("Количество isEstimated:", lesson.getLesson.course.lessons.reduce((acc, item) => acc + item.contentTotalIsEstimated, 0))
+    console.log("Количество Done:", currentContentTotalDone)
 
     function getLessonWriteQuery() {
         return (
+            // client.writeQuery({
+            //     query: GET_COURSES,
+            //     data: {
+            //         getCourses: {
+            //             contentTotalIsEstimatedCount: 1,
+            //             contentTotalDoneCount: 1,
+            //             progressCourse: 1
+            //         }
+            //     }
+            // }),
             client.writeQuery({
                 query: GET_LESSON,
                 data: {

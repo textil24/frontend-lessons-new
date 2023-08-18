@@ -24,66 +24,6 @@ export interface IInfo {
     }
 }
 
-// const infoLink: IInfo = {
-//     data: {
-//         id: "1",
-//         type: "link",
-//         title: "Список уроков",
-//         boxItems: [
-//             {
-//                 id: "2",
-//                 link: "/lesson",
-//                 text: "Введение"
-//             },
-//             {
-//                 id: "3",
-//                 link: "/lesson",
-//                 text: "Переменные"
-//             },
-//             {
-//                 id: "4",
-//                 link: "/lesson",
-//                 text: "Типы данных"
-//             },
-//             {
-//                 id: "5",
-//                 link: "/lesson",
-//                 text: "Циклы for и while"
-//             }
-//         ]
-//     }
-// }
-
-// const infoIcon: IInfo = {
-//     data: {
-//         id: "6",
-//         type: "icon",
-//         title: "Это учебное пособие",
-//         boxItems: [
-//             {
-//                 id: "7",
-//                 icon: <Icon icon="icon-park-outline:video" style={{ marginRight: "6px" }} />,
-//                 text: "Видео (всего 9 минут)"
-//             },
-//             {
-//                 id: "8",
-//                 icon: <Icon icon="ph:question" style={{ marginRight: "6px" }} />,
-//                 text: "Вопросы с выбором ответа"
-//             },
-//             {
-//                 id: "9",
-//                 icon: <Icon icon="fluent:tasks-app-24-filled" style={{ marginRight: "6px" }} />,
-//                 text: "Задачи"
-//             },
-//             {
-//                 id: "10",
-//                 icon: <Icon icon="carbon:lightning" style={{ marginRight: "6px" }} />,
-//                 text: "Проверка кода"
-//             }
-//         ]
-//     }
-// }
-
 
 const Course = () => {
 

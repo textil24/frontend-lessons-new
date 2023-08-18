@@ -8,9 +8,10 @@ interface ICard {
     name: string
     // category: string
     preview: string
+    progressCourse: number | undefined
 }
 
-const Card: FC<ICard> = ({ id, name, preview }) => {
+const Card: FC<ICard> = ({ id, name, preview, progressCourse }) => {
     return (
         <Link to={"/courses/" + id}>
             <CardItem boxShadow={"rgba(36, 36, 36, 0.07) 0px 1px 12px 2px"}>
@@ -24,7 +25,7 @@ const Card: FC<ICard> = ({ id, name, preview }) => {
                         </Text>
                         <Flex justifyContent={"space-between"} alignItems={"center"}>
                             <Badge>Курс</Badge>
-                            <Progress percent={100} />
+                            <Progress percent={progressCourse} />
                         </Flex>
                     </Stack>
                 </CardBody>

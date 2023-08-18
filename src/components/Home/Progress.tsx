@@ -2,7 +2,7 @@ import { Text, Progress as ProgressItem, Flex, Grid } from "@chakra-ui/react"
 import { FC } from "react"
 
 interface IProgress {
-    percent: number
+    percent: number | undefined
 }
 
 const Progress: FC<IProgress> = ({ percent }) => {
