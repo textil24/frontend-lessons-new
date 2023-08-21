@@ -26,7 +26,7 @@ const Home = () => {
     return (
         <Box>
             <Header type="home" />
-            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(250px, 1fr))'>
                 {error && <Error />}
                 {loading && <Loading type="home" />}
                 {cards && cards?.getCourses.map(({ id, name, preview }) => {

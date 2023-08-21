@@ -16,7 +16,7 @@ const Progress: FC<IProgress> = ({ percent }) => {
                 size='sm'
                 value={percent} 
                 />
-                <Text justifySelf={"flex-end"} color={"gray.700"}>
+                <Text justifySelf={"flex-end"}>
                     {percent}%
                 </Text>
         </Grid>
