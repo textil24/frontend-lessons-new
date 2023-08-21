@@ -28,7 +28,7 @@ const Select: FC<ISelect> = ({ type, error, register }) => {
                 _placeholder={{
                     color: "#718096"
                 }}
-                height={"46px"}
+                height={"44px"}
                 outline={`1px solid ${error ? "#FE0000" : "#CCCED1"}`}
                 border={"none"}
                 focusBorderColor={error ? "#FE0000" : "#22C35E"}
