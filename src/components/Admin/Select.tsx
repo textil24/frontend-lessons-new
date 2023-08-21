@@ -10,6 +10,9 @@ interface ISelect {
 }
 
 const Select: FC<ISelect> = ({ type, error, register }) => {
+
+    console.log(error)
+
     return (
         <Stack direction={"column"}>
             <Heading display={"flex"} size={"sm"}>
@@ -26,9 +29,9 @@ const Select: FC<ISelect> = ({ type, error, register }) => {
                     color: "#718096"
                 }}
                 height={"46px"}
-                outline={"1px solid #CCCED1"}
+                outline={`1px solid ${error ? "#FE0000" : "#CCCED1"}`}
                 border={"none"}
-                focusBorderColor={"#22C35E"}
+                focusBorderColor={error ? "#FE0000" : "#22C35E"}
                 placeholder='Выбрать категорию'
             >
                 <option value='course'>Курс</option>
