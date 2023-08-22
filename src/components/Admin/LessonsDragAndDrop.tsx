@@ -1,7 +1,7 @@
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
-import { DragHandleIcon } from '@chakra-ui/icons';
+import { DragHandleIcon, EditIcon } from '@chakra-ui/icons';
 import { useState } from "react";
-import { Box, Button, Flex, Heading, Stack } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Stack, CloseButton } from "@chakra-ui/react";
 
 const LessonsDragAndDrop = () => {
 
@@ -45,6 +45,11 @@ const LessonsDragAndDrop = () => {
 
     }
 
+    const handleDeleteLesson = (lessonId: string) => {
+        const filteredLessons = stores.filter(lesson => lesson.id !== lessonId)
+        setStores(filteredLessons)
+    }
+
     return (
         <Stack>
 
@@ -58,7 +63,7 @@ const LessonsDragAndDrop = () => {
                 <Droppable droppableId='ROOT' type='group'>
                     {(provided) => (
                         <Stack
-                            height={`${stores.length - 1 * 56}px`}
+                            height={`${stores.length * 65.7}px`}
                             spacing={2}
                             {...provided.droppableProps}
                             ref={provided.innerRef}>
@@ -67,6 +72,7 @@ const LessonsDragAndDrop = () => {
                                     {(provided) => (
                                         <Box
                                             display={"flex"}
+                                            justifyContent={"space-between"}
                                             alignItems={"center"}
                                             border={"1px solid #CCCED1"}
                                             borderRadius={"0.375rem"}
@@ -77,7 +83,13 @@ const LessonsDragAndDrop = () => {
                                             ref={provided.innerRef}
                                         >
                                             <DragHandleIcon mr={2} />
-                                            <Heading size="sm">Урок {index + 1}. {store.name}</Heading>
+                                            <Flex alignItems={"center"}>
+                                                <Heading size="sm">Урок {index + 1}. {store.name}</Heading>
+                                                <Button _hover={{ background: "transparent" }} bgColor={"transparent"} size={"sm"}>
+                                                    <EditIcon />
+                                                </Button>
+                                            </Flex>
+                                            <CloseButton onClick={() => handleDeleteLesson(store.id)} color={"red.500"} />
                                         </Box>
                                     )}
                                 </Draggable>
@@ -87,7 +99,7 @@ const LessonsDragAndDrop = () => {
                 </Droppable>
             </DragDropContext>
 
-            <Flex mt={4} direction="column">
+            <Flex mt={1} direction="column">
                 <Button onClick={() => setStores([...stores, { id: `${stores.length + 1}`, name: "Название" }])}>
                     Добавить новый урок
                 </Button>
