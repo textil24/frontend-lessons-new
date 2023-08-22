@@ -11,8 +11,6 @@ interface ISelect {
 
 const Select: FC<ISelect> = ({ type, error, register }) => {
 
-    console.log(error)
-
     return (
         <Stack direction={"column"}>
             <Heading display={"flex"} size={"sm"}>
