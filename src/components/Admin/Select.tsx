@@ -1,6 +1,6 @@
 import { Select as SelectWrapper, FormControl, Text, Box, Heading, Stack } from '@chakra-ui/react'
 import { FieldError, UseFormRegister } from 'react-hook-form'
-import { IAdmin } from '../../pages/Admin'
+import { IAdmin } from '../../pages/Admin/Admin'
 import { FC } from 'react'
 
 interface ISelect {

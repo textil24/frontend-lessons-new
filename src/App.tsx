@@ -1,6 +1,7 @@
 import { Box, Container } from "@chakra-ui/react"
 import { Route, Routes } from "react-router-dom"
 import { Admin, Course, Home, Lesson } from "./pages"
+import EditLesson from "./pages/Admin/EditLesson"
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     id: 4,
     path: "/admin",
     element: <Admin />
+  },
+  {
+    id: 5,
+    path: "/admin/lesson",
+    element: <EditLesson />
   }
 ]
 

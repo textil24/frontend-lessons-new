@@ -2,7 +2,7 @@ import { FC } from "react";
 import "./Textarea.css"
 import TextareaAutosize from 'react-textarea-autosize';
 import { FieldError, UseFormRegister } from "react-hook-form";
-import { IAdmin } from "../../../pages/Admin";
+import { IAdmin } from "../../../pages/Admin/Admin";
 import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 
 interface ITextarea {

@@ -1,9 +1,9 @@
 import { Box, Button, Container, Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import { Header } from '../components/@Common'
-import { LessonsDragAndDrop, Select, Textarea } from '../components/Admin';
+import { Header } from '../../components/@Common'
+import { LessonsDragAndDrop, Select, Textarea } from '../../components/Admin';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
-import { CREATE_COURSE } from '../apollo/admin';
+import { CREATE_COURSE } from '../../apollo/admin';
 export interface IAdmin {
     name: string
     category: string
