@@ -14,17 +14,8 @@ interface IEditorTask {
 
 const EditorTask: FC<IEditorTask> = ({ index, register, errors, maxLength }) => {
 
-    console.log(errors)
-
     const errorTitle = errors?.content?.[index]?.title
     const errorText = errors?.content?.[index]?.text
-
-    const id = 0
-
-    // type TTitle = typeof `content.${id}.title`
-    // const typeTitle: TTitle = `content.${id}.title`
-    // const typeText = `content.${id}.text`
-
 
     return (
         <SelectionWrapper name='Задача'>

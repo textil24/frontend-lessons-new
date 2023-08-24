@@ -6,11 +6,13 @@ import { useForm } from "react-hook-form"
 export interface IEditLesson {
     content: [
         {
-            id: number
-            title: string
-            text: string
+            title: string;
+            text: string;
+        },
+        {
+            question: string
         }
-    ]
+    ];
 }
 
 const EditLesson = () => {
@@ -18,6 +20,7 @@ const EditLesson = () => {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<IEditLesson>();
 
     const onSubmit = (data: any) => {
+        console.log(data)
         if (data.title) {
             console.log(data)
         }
@@ -28,6 +31,11 @@ const EditLesson = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={4}>
                     <Header type="home" />
+
+                    {/* <EditorAnswerSelector /> */}
+
+                    <Editor />
+
                     <EditorTask
                         index={0}
                         register={register}
@@ -41,9 +49,7 @@ const EditLesson = () => {
                         maxLength={100}
                     />
 
-                    {/* <Editor />
-                <EditorAnswerSelector />
-                <EditorPrism /> */}
+                {/* <EditorPrism /> */}
                 </Stack>
                 <Button type="submit">
                     Submit
