@@ -5,8 +5,10 @@ import EditorAnswerSelector from "./EditorAnswerSelector";
 import LessonsDragAndDrop from "./LessonsDragAndDrop";
 import EditorTask from "./EditorTask";
 import EditorPrism from "./EditorPrism";
+import SelectionWrapper from "./selectionWrapper";
 
 export {
+    SelectionWrapper,
     Textarea,
     Select,
     Editor,

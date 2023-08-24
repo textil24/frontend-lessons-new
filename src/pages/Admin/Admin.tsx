@@ -11,6 +11,11 @@ export interface IAdmin {
     description: string
 }
 
+export interface ICategory {
+    value: string
+    name: string
+}
+
 const Admin = () => {
     const [createCourse] = useMutation(CREATE_COURSE)
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<IAdmin>();
@@ -28,6 +33,21 @@ const Admin = () => {
         }
     };
 
+    const categories = [
+        {
+            value: "course",
+            name: "Курс"
+        },
+        {
+            value: "quiz",
+            name: "Тестирование"
+        },
+        {
+            value: "article",
+            name: "Статья"
+        }
+    ]
+
     return (
         <Container maxW='container.md'>
             <Header type="home" />
@@ -41,23 +61,25 @@ const Admin = () => {
                         error={errors.name}
                         register={register} />
                     <Select
+                        name="Категория"
                         type="category"
+                        categories={categories}
                         error={errors.category}
                         register={register}
                     />
                     <Textarea
-                        type="preview"
                         name="Краткое описание"
+                        type="preview"
                         maxLength={100}
                         error={errors.preview}
                         register={register} />
                     <Textarea
-                        type="description"
                         name="Подробное описание"
+                        type="description"
                         maxLength={200}
                         error={errors.description}
                         register={register} />
-                    <LessonsDragAndDrop />
+                    <LessonsDragAndDrop name='Список уроков'/>
                     <Flex>
                         <Button onClick={onSubmit} colorScheme="whatsapp" type='submit'>
                             Сохранить

@@ -1,9 +1,14 @@
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { DragHandleIcon, EditIcon } from '@chakra-ui/icons';
-import { useState } from "react";
+import { FC, useState } from "react";
 import { Box, Button, Flex, Heading, Stack, CloseButton } from "@chakra-ui/react";
+import { SelectionWrapper } from ".";
 
-const LessonsDragAndDrop = () => {
+interface ILessonsDragAndDrop {
+    name: string
+}
+
+const LessonsDragAndDrop: FC<ILessonsDragAndDrop> = ({ name }) => {
 
     const DATA = [
         {
@@ -51,12 +56,7 @@ const LessonsDragAndDrop = () => {
     }
 
     return (
-        <Stack>
-
-            <Heading size={"sm"}>
-                Список уроков:
-            </Heading>
-
+        <SelectionWrapper name={name}>
             <DragDropContext
                 onDragEnd={handleDragDrop}
             >
@@ -104,7 +104,8 @@ const LessonsDragAndDrop = () => {
                     Добавить новый урок
                 </Button>
             </Flex>
-        </Stack>
+
+        </SelectionWrapper>
     )
 }
 

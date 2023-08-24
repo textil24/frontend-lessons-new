@@ -1,21 +1,21 @@
-import { Select as SelectWrapper, FormControl, Text, Box, Heading, Stack } from '@chakra-ui/react'
+import { Select as SelectWrapper, Text } from '@chakra-ui/react'
 import { FieldError, UseFormRegister } from 'react-hook-form'
-import { IAdmin } from '../../pages/Admin/Admin'
+import { IAdmin, ICategory } from '../../pages/Admin/Admin'
 import { FC } from 'react'
+import { SelectionWrapper } from '.'
 
 interface ISelect {
+    name: string
     type: "category"
+    categories: ICategory[]
     error: FieldError | undefined
     register: UseFormRegister<IAdmin>
 }
 
-const Select: FC<ISelect> = ({ type, error, register }) => {
+const Select: FC<ISelect> = ({ name, type, categories, error, register }) => {
 
     return (
-        <Stack direction={"column"}>
-            <Heading display={"flex"} size={"sm"}>
-                Категория <Text ml={1} color="red.500">*</Text>
-            </Heading>
+        <SelectionWrapper name={name}>
             <SelectWrapper
                 {...register(type, { required: { value: true, message: 'Обязательно нужно выбрать категорию' } })}
                 _focus={{
@@ -32,12 +32,12 @@ const Select: FC<ISelect> = ({ type, error, register }) => {
                 focusBorderColor={error ? "#FE0000" : "#22C35E"}
                 placeholder='Выбрать категорию'
             >
-                <option value='course'>Курс</option>
-                <option value='quiz'>Тестирование</option>
-                <option value='article'>Статья</option>
+                {categories.map(({ value, name }) =>
+                    <option value={value}>{name}</option>
+                )}
             </SelectWrapper>
             {error && <Text color={"red.500"}>{error?.message}</Text>}
-        </Stack>
+        </SelectionWrapper>
     )
 }
 

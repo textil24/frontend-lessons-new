@@ -3,7 +3,8 @@ import "./Textarea.css"
 import TextareaAutosize from 'react-textarea-autosize';
 import { FieldError, UseFormRegister } from "react-hook-form";
 import { IAdmin } from "../../../pages/Admin/Admin";
-import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
+import { SelectionWrapper } from "..";
 
 interface ITextarea {
     name: string
@@ -16,10 +17,7 @@ interface ITextarea {
 const Textarea: FC<ITextarea> = ({ name, type, maxLength: value, error, register }) => {
 
     return (
-        <Stack direction={"column"}>
-            <Heading display={"flex"} size={"sm"}>
-                {name} <Text ml={1} color="red.500">*</Text>
-            </Heading>
+        <SelectionWrapper name={name}>
             <TextareaAutosize
                 {...register(type, {
                     required: { value: true, message: 'Поле обязательно для заполнения' },
@@ -28,7 +26,7 @@ const Textarea: FC<ITextarea> = ({ name, type, maxLength: value, error, register
                 className={`textarea ${error && "error"}`}
                 placeholder={name} />
             {error && <Text color={"red.500"}>{error?.message}</Text>}
-        </Stack>
+        </SelectionWrapper>
     )
 }
 
