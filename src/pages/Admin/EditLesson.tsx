@@ -10,14 +10,18 @@ export interface IEditLesson {
             text: string;
         },
         {
-            question: string
+            content: string
+        },
+        {
+            progLang: string,
+            code: string
         }
     ];
 }
 
 const EditLesson = () => {
 
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<IEditLesson>();
+    const { register, handleSubmit, getValues, setValue, setError, clearErrors, formState: { errors, isSubmitting } } = useForm<IEditLesson>();
 
     const onSubmit = (data: any) => {
         console.log(data)
@@ -34,22 +38,41 @@ const EditLesson = () => {
 
                     {/* <EditorAnswerSelector /> */}
 
-                    <Editor />
+                    <EditorPrism
+                        register={register}
+                        errors={errors}
+                    />
 
-                    <EditorTask
+                    {/* <EditorTask
                         index={0}
                         register={register}
                         errors={errors}
                         maxLength={100}
                     />
-                    <EditorTask
+
+                    <Editor
                         index={1}
+                        errors={errors}
+                        setError={setError}
+                        clearErrors={clearErrors}
+                        setValue={setValue}
+                    />
+
+                    <EditorTask
+                        index={2}
                         register={register}
                         errors={errors}
                         maxLength={100}
                     />
 
-                {/* <EditorPrism /> */}
+                    <Editor
+                        index={3}
+                        errors={errors}
+                        setError={setError}
+                        clearErrors={clearErrors}
+                        setValue={setValue}
+                    /> */}
+
                 </Stack>
                 <Button type="submit">
                     Submit

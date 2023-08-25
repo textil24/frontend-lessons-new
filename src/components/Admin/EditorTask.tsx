@@ -18,17 +18,13 @@ const EditorTask: FC<IEditorTask> = ({ index, register, errors, maxLength }) => 
     const errorText = errors?.content?.[index]?.text
 
     return (
-        <SelectionWrapper name='Задача'>
+        <SelectionWrapper type='task' name='Задача'>
             <Stack pl={4} borderLeft={`2px solid #0088CC`} py={2} spacing={2} direction='column'>
                 <FormControl isInvalid={errorTitle && true}>
                     <FormLabel display={"flex"} fontWeight={"bold"} size={"sm"}>
                         Вопрос <Text ml={1} color="red.500">*</Text>
                     </FormLabel>
                     <Flex alignItems={"center"}>
-                        <Icon
-                            icon="streamline:interface-edit-write-1-edit-edition-form-pen-text-write"
-                            style={{ marginRight: "12px" }}
-                        />
                         <Input
                             {...register(`content.${index}.title`, {
                                 required: { value: true, message: 'Поле обязательно для заполнения' },
