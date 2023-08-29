@@ -31,13 +31,13 @@ const EditorPrism: FC<IEditorPrism> = ({ register, errors }) => {
         <SelectionWrapper name={"Код для ознакомления"}>
             <Stack pl={4} borderLeft={"2px solid #0088CC"} py={2} spacing={2} direction='column'>
                 <Box border={"2px solid red"} borderRadius={"10px"} overflow={"hidden"}>
-                    <Select
+                    {/* <Select
                         name={"Выбрать язык программирования"}
                         type={"category"}
                         categories={categories}
                         errors={errors}
                         register={register}
-                    />
+                    /> */}
                 </Box>
                 {errors.content?.[0]?.message ?? <Text color={"red.500"}>Поле обязательное</Text>}
                 <Box border={"2px solid red"} borderRadius={"10px"} overflow={"hidden"}>
