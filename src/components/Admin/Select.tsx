@@ -1,15 +1,16 @@
 import { Select as SelectWrapper, Text } from '@chakra-ui/react'
-import { FieldError, UseFormRegister } from 'react-hook-form'
+import { FieldError, FieldErrors, UseFormRegister } from 'react-hook-form'
 import { IAdmin, ICategory } from '../../pages/Admin/Admin'
 import { FC } from 'react'
 import { SelectionWrapper } from '.'
+import { IEditLesson } from '../../pages/Admin/EditLesson'
 
 interface ISelect {
     name: string
     type: "category"
     categories: ICategory[]
-    error: FieldError | undefined
-    register: UseFormRegister<IAdmin>
+    error: FieldErrors<IEditLesson>
+    register: UseFormRegister<IEditLesson>
 }
 
 const Select: FC<ISelect> = ({ name, type, categories, error, register }) => {

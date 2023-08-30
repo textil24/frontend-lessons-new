@@ -1,5 +1,5 @@
 import { Button, Container, Stack } from "@chakra-ui/react"
-import { Editor, EditorAnswerSelector, EditorPrism, EditorTask } from "../../components/Admin"
+import { Editor, EditorPrism, EditorTask, EditorAnswerSelector } from "../../components/Admin"
 import { Header } from "../../components/@Common"
 import { useForm } from "react-hook-form"
 
@@ -36,20 +36,6 @@ const EditLesson = () => {
                 <Stack spacing={4}>
                     <Header type="home" />
 
-                    {/* <EditorAnswerSelector /> */}
-
-                    <EditorPrism
-                        register={register}
-                        errors={errors}
-                    />
-
-                    {/* <EditorTask
-                        index={0}
-                        register={register}
-                        errors={errors}
-                        maxLength={100}
-                    />
-
                     <Editor
                         index={1}
                         errors={errors}
@@ -59,19 +45,18 @@ const EditLesson = () => {
                     />
 
                     <EditorTask
-                        index={2}
+                        index={0}
                         register={register}
                         errors={errors}
                         maxLength={100}
                     />
 
-                    <Editor
-                        index={3}
+                    {/* <EditorAnswerSelector /> */}
+
+                    <EditorPrism
+                        register={register}
                         errors={errors}
-                        setError={setError}
-                        clearErrors={clearErrors}
-                        setValue={setValue}
-                    /> */}
+                    />
 
                 </Stack>
                 <Button type="submit">
