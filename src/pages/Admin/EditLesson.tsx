@@ -51,7 +51,7 @@ const EditLesson = () => {
                         maxLength={100}
                     />
 
-                    {/* <EditorAnswerSelector /> */}
+                    <EditorAnswerSelector />
 
                     <EditorPrism
                         register={register}

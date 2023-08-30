@@ -30,7 +30,7 @@ const EditorPrism: FC<IEditorPrism> = ({ register, errors }) => {
     return (
         <SelectionWrapper name={"Код для ознакомления"}>
             <Stack pl={4} borderLeft={"2px solid #0088CC"} py={2} spacing={2} direction='column'>
-                <Box borderRadius={"10px"} overflow={"hidden"}>
+                <Box borderRadius={"10px"}>
                     <Select
                         name={"Выбрать язык программирования"}
                         type={"category"}
