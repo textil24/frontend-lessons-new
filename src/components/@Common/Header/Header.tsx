@@ -31,7 +31,7 @@ const Header: FC<IHeader> = ({ type, lesson, loading }) => {
                     </Link>
                 )}
                 <Heading display={"flex"} justifyContent={"center"} fontFamily={"monospace"} order={"2"} textAlign="center" size='md'>
-                    <span style={{ color: "#22C35E" }}>nexign&lt;</span>academy<span style={{ color: "#22C35E" }}>&gt;</span>
+                    <span style={{ color: "#22C35E" }}>naukograd&lt;</span>academy<span style={{ color: "#22C35E" }}>&gt;</span>
                 </Heading>
                 <Flex order={"3"} justifyContent={"flex-end"} >
                     <Account />
