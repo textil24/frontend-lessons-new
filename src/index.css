@@ -1,13 +1,15 @@
-*, *::after, *::before {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 p > code {
-    padding: 0 3px;
-    background-color: #EBEEF0;
-    font-weight: 600;
-    color: #22C35E;
-    border-radius: 0.125rem;
+  padding: 0 3px;
+  background-color: #ebeef0;
+  font-weight: 600;
+  color: #22c35e;
+  border-radius: 0.125rem;
 }

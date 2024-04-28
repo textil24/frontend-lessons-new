@@ -1,7 +1,4 @@
-import Card from "./Card";
-import Progress from "./Progress";
+import Card from './Card';
+import Progress from './Progress';
 
-export {
-    Card,
-    Progress
-}
+export { Card, Progress };
